@@ -1,3 +1,4 @@
+```
 \documentclass[a4paper,10pt]{ctexart}
 
 \setlength{\parindent}{0pt}% 设计全局无缩进
@@ -1416,5 +1417,5 @@ p.findall('i love')
 \end{document}
 
 %python注释快捷键ctrl+/
-
+```
 
