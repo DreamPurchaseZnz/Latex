@@ -134,8 +134,23 @@ quad空格 a \quad b 一个m的宽度
 .2 reverse.
 }
 ```
-# 插入图表
+# 插入公式
 ```
+$$ a^b $$
+
+\begin{math}
+\end{math}
+```
+
+
+# 插入图像
+```
+    \begin{figure}
+      \centering
+      \includegraphics[scale=1]{peaks1.eps}
+      \caption{山峰}\label{peaks1}
+    \end{figure}
+
 \begin{figure/table}[!htbp]
 其中htbp是可选的，它们分别代表
 !-忽略“美学”标准
@@ -144,8 +159,32 @@ t-top
 b-bottom
 p-page-of-its-own
 ```
+# 插入表格
+```
+ % 表格 浮动体
+    \begin{table}
+    	\centering
+    	\caption{Index}\label{tab-result}
+    	\begin{tabular}{c ||c| c }
+    		\hline
+    		\ & RMSEP & RPD\\
+    		\hline\hline
+    		PSO & 1&10\\
+    		\hline
+    		ASFA & 2 & 100\\
+    		\hline
+    		
+    	\end{tabular}
+    \end{table}
+```
+# 插入列表
+```
+\begin{enumerate}
+\end{enumerate}
 
- 
+\begin{itemize}
+\end{itemize}
+```
 
 # 设置section样式
 ```
