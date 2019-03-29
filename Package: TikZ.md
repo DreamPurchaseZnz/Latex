@@ -1,4 +1,4 @@
-# A very minimal introduction to TikZ
+# [A very minimal introduction to TikZ](https://cremeronline.com/LaTeX/minimaltikz.pdf)
 
 ## Introduction
 
@@ -35,6 +35,14 @@ To draw a line
 
 ```
 You can put several lines on the same graph
+
+Notice the semi-colon ";" at end of lines, it is these colons that mark the end of instructions. You can see below examples where one
+instruction is spread over several lines without changing the output
+```
+\draw (0,0) --(1,2) -- (2,3) -- (1,0); \draw (3,0) -- (1.5,0.5);
+```
+
+
 ### scaling picutres
 You can blow up the picture, by adding an option "scale" to the environment
 ```
@@ -86,7 +94,8 @@ And finally you can color you line
 \draw [red] (0, 0.5) -- (2,0.5);
 \draw [blue] (0,0) -- (2,0);
 ```
-You have direct access to the following colors: red, green, blue, cyan, magenta, yellow, black, gray, darkgray, lightgray, brown, lime,
+You have direct access to the following colors: red, green, blue, cyan, magenta, yellow, black, gray, darkgray, 
+lightgray, brown, lime,
 olive, orange, pink, purple, teal, violet, and white. And you can define the colors.
 
 ### Pictures in the middle of the text
@@ -164,21 +173,103 @@ In mathematical expression the following variables can be useful: e, which is eq
 ### Fill up simple area
 You can also fill paths when they are closed
 ```
-
+\draw [fill=red,ultra thick] (0,0) rectangle (1,1);
+\draw [fill=red,ultra thick,red] (2,0) rectangle (3,1);                    # draw a line around shape in red
+\draw [blue, fill=blue] (4,0) -- (5,1) -- (4.75,0.15) -- (4,0);
+\draw [fill] (7,0.5) circle [radius=0.1];
+\draw [fill=orange] (9,0) rectangle (11,1);
+\draw [fill=white] (9.25,0.25) rectangle (10,1.5);
+```
+if you don't want to see the outline at all, replace the \draw by \path
+```
+\path [fill=gray] (0,0) rectangle (1.5, 1)
+\draw [fill=yellow] (2, 0) rectangle (3,3)
+```
+### Filling up a arbitrary areas
+```
+\draw [ultra thick] (0,0) to [out=87,in=150] (1,1) -- (.85,.15) -- (0,0);
+\draw [ultra thick, fill=purple] (2,0) to [out=87,in=150] (3,1) -- (2.85,.15) -- (2,0);
+\path [fill=purple] (4,0) to [out=87,in=150] (5,1) -- (4.85,.15) -- (4,0);
 ```
 
-
 ## Putting labels in pictures
+When you do a picture, in 99% of cases you also need to put labels, Let's start by seeing how we would place some text in the pic
+```
+\begin{tikzpicture}
+\draw [thick, <->] (0,2) -- (0,0) -- (2,0);
+\node at (1,1) {yes};                         # Notice how the "yes" is positioned; 
+                                                the center of its "baseline" is at (1,1)                      
+\end{tikzpicture}
+```
 
+Sometime you want a label to be situated relative to a point, TkiZ has neat commands for this.
+```
+\draw [thick, <->] (0,2) -- (0,0) -- (2,0);
+\draw[fill] (1,1) circle [radius=0.025];
+\node [below] at (1,1) {below};
+\node [above] at (1,1) {above};
+\node [left] at (1,1) {left};
+\node [right] at (1,1) {right};
+```
+And also you can mix and match
+```
+\draw [thick, <->] (0,1) -- (0,0) -- (1,0);
+\draw[fill] (1,1) circle [radius=0.025];
+\node [below right, red] at (.5,.75) {below right};
+\node [above left, green] at (.5,.75) {above left};
+\node [below left, purple] at (.5,.75) {below left};
+\node [above right, magenta] at (.5,.75) {above right};
+```
+This makes it possible to label axes and points
+```
+\draw [thick, <->] (0,1) -- (0,0) -- (1,0);
+\node [below right] at (1,0) {$x$};
+\node [left] at (0,1) {$y$};
+\draw[fill] (.4,.6) circle [radius=.5pt];
+\node[above right] (.4,.6) {$A$};
+```
+You can avoid some typing by mixing nodes in the middle of paths
+```
+\draw [thick, <->] (0,1) node [left] {$y$} -- (0,0) -- (1,0) node [below right] {$x$};
+\draw[fill] (.4,.6) circle [radius=.5pt] node[above right] (.4,.6) {$A$};
+```
+The above two code segment have given the same result. Note that the node is put after the point to which it is attached 
+and that we suppress the \ in \node
+
+Sometime you may want to put a whole text several lines in your nodes, that can be done by using the standard Latex \\ for indicating
+a new line but you much tell Tikz how to align things
+```
+\begin{tikzpicture}[xscale=1.3]
+\draw [thick] (0,0) -- (9,0);
+\draw (0,-.2) -- (0, .2);
+\draw (3,-.2) -- (3, .2);
+\draw (6,-.2) -- (6, .2);
+\draw (9,-.2) -- (9, .2);
+\node[align=left, below] at (1.5,-.5)%
+{This happens\\in period 1\\and is aligned\\ left};
+\node[align=center, below] at (4.5,-.5)%
+{This happens\\in period 2\\and is centered};
+\node[align=right, below] at (7.5,-.5)%
+{This happens\\in period 2\\and is right\\aligned};
+\end{tikzpicture}
+```
 
 ## Integration with Beamer
-
-
+TikZ works very well with Beamer (They are written by the same person). In particular, it is very easy to uncover figures processively
+```
+\begin{frame}
+a few lines
+\begin{center}
+\begin{tikzpicture}
+\draw [blue, ultra thick] (-1,2) -- (6,3);
+\uncover<1>{\draw [green,thick] (-4,3) -- (2,2.5);}
+\uncover<2>{\draw [red,thick] (0,0) -- (0,5);}
+\end{tikzpicture}
+\end{center}
+and something under.
+\end{frame}
+```
 ## Hints and tricks
 
+- It takes some time to draw figures, and it is normal to make mistakes. Proceed by trial and error, compiling your code often
 
-## Examples
-
-
-
-## Conclusion
