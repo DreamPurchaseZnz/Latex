@@ -4,14 +4,17 @@
 
 [tikzpgfmanual-NP:405](https://www.bu.edu/math/files/2013/08/tikzpgfmanual.pdf)
 
+[excellent tutorial](http://www.flutterbys.com.au/stats/tut/tut17.1a.html)
+
 ## Introduction
 
 At least 70% of the figures found in the economic literature can be drawn with the commands I present here.
 
 
-## Setup a picture
+## Load package
 Load the tikz package
 ```
+\documentclass{standalone}
 \usepackage{tikz}
 ```
 Load the tikz libraries of your own choice
@@ -20,14 +23,22 @@ Load the tikz libraries of your own choice
 ```
 Examples for libraries are
 ```
- "arrows", "automata", "backgrounds", 
- "calendar", "chains", "matrix",
- "mindmap", "patterns", "petri", 
- "shadows", "shapes.geometric", 
- "shapes.misc", "spy", "trees".                                   
+ "arrows", 
+ "automata",
+ "backgrounds", 
+ "calendar", 
+ "chains", 
+ "matrix",
+ "mindmap", 
+ "patterns", 
+ "petri", 
+ "shadows", 
+ "shapes.geometric", 
+ "shapes.misc",
+ "spy", "trees".                                   
 ```
-
-Start drawing
+## Get a canvas
+The basic structure of tikzpicture enviroment is as follows:
 ```
 \begin{tikzpicture} [options]
 instructions
@@ -36,6 +47,13 @@ instructions
 or 
 ```
 \tikz [option] {tikz commands}
+```
+There are approximately 750 options that can be applied to graphical elements 
+
+Some of the commen options that are applied at the environment level so that they can affect all elements therein 
+```
+scale=(factor)                     # Rescaling the graphic by X
+xscale, yscale
 ```
 
 If you want to apply the float format, you can set it up as
@@ -49,10 +67,26 @@ code
 \caption{Title}
 \end{figure}
 ```
-## Basics 
+
+## Coordinates
+```
+Cartesian:(x,y)
+Polar:(length, angle)
+```
+### relative coordinates
+Coordinates relative to the precious position can be specified 
+by appending either "++"(incremental) or "+"(non-incremental) before brackets
+```
+++(x,y)                       # Update the reference point with the current point
++(x,y)                        # Donnot send the new reference location as the current point
+```
+
+## Basics elements 
 basic elements are paths and nodes
 
--Path
+### Path 
+Path is a series of line segments between coordinates and by default a path is invisible
+
 ```
 \path [option] specifications
 ```
@@ -61,25 +95,168 @@ Abbrevaitions
 \draw = \path [draw]
 \fill = \path [fill]
 \shade = \path [shade]
-etc.
+\pattern = \path[pattern]
 ```
--Node: typically a rectangle or circle or another simple shape with some text
-or even with text only.
+Options can be as follows: 1) Geometric Actions
+```
+rotate
+xshift
+yshift
+scaling
+xscale
+yscale
+```
+2) Color
+```
+draw
+fill
+color-color
+opacity
+```
+3) line width
+```
+line width
+= ultra thin,
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+```
+4) line sype
+```
+solid
+dashed
+dotted
+dashdotted
+densely dotted
+loosely dotted
+double
+dash phase = phase
+dash pattern = <pattern>
+```
+4) Arrow heads and tails
+```
+->
+-stealth
+-latex
+```
+5) round corners
 
+
+### Node
+A node is a text element placed at a coordinate and 
+optionally may have a simple shape (such as a rectangle or circle or elipse) drawn around it
+
+By default, the shape around a node is stretched such that it just slightly bigger than the contents.
+A node has a number of anchors as well as a label that can be used to refer to the node (or any of its anchors).
+
+A node have the following syntax
 ```
-\node [options](name){text}
+\node [options](name){text}                 
 ```
+where the name is the node's label and the optional text is the text elment to be appear at the node
+
+Nodes can be also defined along path/line by using the node operator
+```
+begin{tikzpicture}
+draw [help lines] (-2,-2) grid (2,2);
+path [draw] (-1,1) node (NodeA) {Node A} --
+	(1,-1) node (NodeB) {Node B} -- (-1,-1.5);
+end{tikzpicture}
+```
+### option-shapes
+```
+rectangle
+circle
+elipse
+diamond
+cyclinder
+cloud
+signal
+cloud callout
+rectangle callout
+rounded rectangle
+```
+### seperation 
+```
+inner sep=<>
+outer sep=dimension
+```
+```
+\node [draw,inner sep=10pt] at (1,-1) (NodeB) {Node B};
+\node [draw,outer sep=5pt] at (1,-1) (NodeB) {Node B};
+```
+### anchor location
+```
+anchor= <direction> where directions is one of 
+north
+west
+east
+south
+or combination
+```
+```
+<direction>= of <node>
+where direction is one of "above", "below", "left", "right" or a combination
+```
+```
+\draw [help lines] (-2,-2) grid (2,2);
+  \node [draw] at (-1,1) (NodeA) {Node A};
+  \node [draw] at (-1,1.5) (NodeA) {Node A};
+  \node [draw,right=1pt of NodeA] (NodeB) {Node B};
+  \node [draw,node distance=1pt,below=of NodeA] (NodeC) {Node C};
+  \node [draw] at (-1,0) (NodeC) {Node C};
+  \node [draw,below right=1pt of NodeC,anchor=west]  (NodeD) {Node D};
+  \node [draw] at (-1,-1) (NodeE) {Node E};
+  \node [draw,anchor=west] at (NodeE.east)  (NodeF) {Node F};
+```
+### Minimum height and/or width
+```
+minimum size=<dimension>, 
+minimum width=<dimension>, 
+minimum height=<dimension>
+```
+This provides a way of ensuring that the size of the node is not solely dependent on the size of the node contents.
+
+
 
 
 ## Draw lines and curves
 ### simple straight lines
 by default, coordinates are in centimeters
-To draw a line
+
+Lines can be drawn by either using the draw path option or the \draw keyword.
 ```
+draw [help lines] (-2,-2) grid (2,2)
 \draw (0,0) --(1,2);                    # draws a line between the points (0,0) and (1,2)
 \draw (0,0) --(1,2) -- (2,3) -- (1,0);
-
 ```
+A path can be closed with operation
+```
+-- cycle 
+```
+
+Points can be connected by an "elbow" including only a horizontal and vertical line rather than a single straight line.
+```
+draw (-1.5,2) |- (0.0,-0.5);
+draw (-1,0.8) -| (1.5,-1.5);
+```
+
+### Bezier curved paths/lines
+Bezier curves are specified by including operation between points
+```
+.. control(x,y)..              # the coordination of control define the Bezier Curves handles
+```
+```
+ \begin{tikzpicture}
+  \draw [help lines] (-2,-2) grid (2,2);
+  \draw (-1.5,0) .. controls (-1,1) .. (1,-0);
+  \draw (-1.5,-0.5) .. controls (-1,-1) and (0,-1) .. (1,-0.5);
+  \end{tikzpicture}
+```
+
 You can put several lines on the same graph
 
 Notice the semi-colon ";" at end of lines, it is these colons that mark the end of instructions. You can see below examples where one
@@ -87,7 +264,20 @@ instruction is spread over several lines without changing the output
 ```
 \draw (0,0) --(1,2) -- (2,3) -- (1,0); \draw (3,0) -- (1.5,0.5);
 ```
+### other curves
+It also possible to create parabola curved paths/lines by
+```
+(in,out) looseness
+(in,out) (min,max) distance
+(in,out) control
+```
+Exit and entry angles can be repectively defined by the out and in options.
 
+Also 
+```
+bend right/left
+```
+indicate the direction and the angle of a bend in a path or line.
 
 ### scaling picutres
 You can blow up the picture, by adding an option "scale" to the environment
@@ -158,9 +348,18 @@ You are not limited to straight lines
 \draw [red, ultra thick] (3,0.5) circle [radius=0.5];;
 \end{tikzpicture}
 ```
-The arc is of radius 1, starts at the point (6, 0) leaving it at an angle of 45 degrees and stops when its slope is 120 degrees
+##### Arc paths/lines
+An arc is defined by three parameters separated by colons
+```
+(out angle;in angle;radius length)
+```
 ```
 \draw [gray] (6,0) arc [radius=1, start angle=45, end angle= 120];
+draw [help lines] (-2,-2) grid (2,2);
+draw (-1.5,0.5) arc (10:300:-0.75cm);
+draw (-1.5,-1) arc (10:300:-0.75cm and 0.75cm);             # collapse
+draw (0,0) arc (10:300:-1cm and -0.5cm);
+
 ```
 
 If you want a precise curve you can do it by computing lots of points in program such as Mathematica and putting them in TikZ.
