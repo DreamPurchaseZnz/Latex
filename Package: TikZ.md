@@ -1,5 +1,7 @@
-# [A very minimal introduction to TikZ](https://cremeronline.com/LaTeX/minimaltikz.pdf)
+# TikZ
 
+[A very minimal introduction to TikZ](https://cremeronline.com/LaTeX/minimaltikz.pdf)
+[tikzpgfmanual](https://www.bu.edu/math/files/2013/08/tikzpgfmanual.pdf)
 ## Introduction
 
 At least 70% of the figures found in the economic literature can be drawn with the commands I present here.
