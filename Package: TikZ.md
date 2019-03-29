@@ -97,7 +97,9 @@ Abbrevaitions
 \shade = \path [shade]
 \pattern = \path[pattern]
 ```
-Options can be as follows: 1) Geometric Actions
+Options can be as follows: 
+
+#### Geometric Actions
 ```
 rotate
 xshift
@@ -106,14 +108,14 @@ scaling
 xscale
 yscale
 ```
-2) Color
+#### Color
 ```
 draw
 fill
 color-color
 opacity
 ```
-3) line width
+#### line width
 ```
 line width
 = ultra thin,
@@ -124,7 +126,7 @@ thick
 very thick
 ultra thick
 ```
-4) line sype
+####  line sype
 ```
 solid
 dashed
@@ -136,13 +138,13 @@ double
 dash phase = phase
 dash pattern = <pattern>
 ```
-4) Arrow heads and tails
+####  Arrow heads and tails
 ```
 ->
 -stealth
 -latex
 ```
-5) round corners
+#### round corners
 
 
 ### Node
@@ -166,7 +168,7 @@ path [draw] (-1,1) node (NodeA) {Node A} --
 	(1,-1) node (NodeB) {Node B} -- (-1,-1.5);
 end{tikzpicture}
 ```
-### option-shapes
+#### option-shapes
 ```
 rectangle
 circle
@@ -179,7 +181,7 @@ cloud callout
 rectangle callout
 rounded rectangle
 ```
-### seperation 
+#### seperation 
 ```
 inner sep=<>
 outer sep=dimension
@@ -188,7 +190,7 @@ outer sep=dimension
 \node [draw,inner sep=10pt] at (1,-1) (NodeB) {Node B};
 \node [draw,outer sep=5pt] at (1,-1) (NodeB) {Node B};
 ```
-### anchor location
+#### anchor location
 ```
 anchor= <direction> where directions is one of 
 north
@@ -212,7 +214,7 @@ where direction is one of "above", "below", "left", "right" or a combination
   \node [draw] at (-1,-1) (NodeE) {Node E};
   \node [draw,anchor=west] at (NodeE.east)  (NodeF) {Node F};
 ```
-### Minimum height and/or width
+#### Minimum height and/or width
 ```
 minimum size=<dimension>, 
 minimum width=<dimension>, 
