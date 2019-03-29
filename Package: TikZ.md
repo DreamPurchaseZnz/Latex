@@ -15,8 +15,17 @@ Load the tikz package
 \usepackage{tikz}
 ```
 Load the tikz libraries of your own choice
+```
 \usetikzlibrary{list of libraries}
-
+```
+Examples for libraries are
+```
+ "arrows", "automata", "backgrounds", 
+ "calendar", "chains", "matrix",
+ "mindmap", "patterns", "petri", 
+ "shadows", "shapes.geometric", 
+ "shapes.misc", "spy", "trees".                                   
+```
 
 Start drawing
 ```
