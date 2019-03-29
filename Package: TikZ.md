@@ -6,13 +6,25 @@ At least 70% of the figures found in the economic literature can be drawn with t
 
 
 ## Setup a picture
-When you want to do a picture, just write it as 
+Load the tikz package
 ```
-\usepackage{tikz}                    # in the preamble
-\begin{tikzpicture}
-  code
+\usepackage{tikz}
+```
+Load the tikz libraries of your own choice
+\usetikzlibrary{list of libraries}
+
+
+Start drawing
+```
+\begin{tikzpicture} [options]
+instructions
 \end{tikzpicture}
 ```
+or 
+```
+\tikz [option] {tikz commands}
+```
+
 If you want to apply the float format, you can set it up as
 ```
 \begin{figure}
@@ -24,6 +36,27 @@ code
 \caption{Title}
 \end{figure}
 ```
+## Basics 
+basic elements are paths and nodes
+
+-Path
+```
+\path [option] specifications
+```
+Abbrevaitions
+```
+\draw = \path [draw]
+\fill = \path [fill]
+\shade = \path [shade]
+etc.
+```
+-Node: typically a rectangle or circle or another simple shape with some text
+or even with text only.
+
+```
+\node [options](name){text}
+```
+
 
 ## Draw lines and curves
 ### simple straight lines
