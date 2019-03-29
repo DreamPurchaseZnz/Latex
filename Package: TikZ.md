@@ -193,6 +193,10 @@ if you don't want to see the outline at all, replace the \draw by \path
 ```
 
 ## Putting labels in pictures
+```
+\node[option] (node name) at (x,y) {Tex content of node}
+\path (x,y) node [option] (node name) {Tex content of node}
+```
 When you do a picture, in 99% of cases you also need to put labels, Let's start by seeing how we would place some text in the pic
 ```
 \begin{tikzpicture}
