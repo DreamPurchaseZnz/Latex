@@ -59,12 +59,10 @@ xscale, yscale
 If you want to apply the float format, you can set it up as
 ```
 \begin{figure}
-
-\begin{tikzpicture}
-code
-\end{tikzpicture}
-
-\caption{Title}
+	\begin{tikzpicture}
+		code
+	\end{tikzpicture}
+	\caption{Title}
 \end{figure}
 ```
 
@@ -222,8 +220,16 @@ minimum height=<dimension>
 ```
 This provides a way of ensuring that the size of the node is not solely dependent on the size of the node contents.
 
-
-
+### Continously draw node
+```
+\draw 
+node at (0,0)[right=-3mm]{a}
+node [input, name=input1] {b} 
+node [sum, right of=input1] (suma1) {c}
+node [block, right of=suma1] (inte1) {d}
+node at (6.8,0)[block] (Q1) {e}
+node [block, below of=inte1] (ret1) {f};
+```
 
 ## Draw lines and curves
 ### simple straight lines
