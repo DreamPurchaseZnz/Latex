@@ -198,6 +198,43 @@ If you want to apply the float format, you can set it up as
 	\caption{Title}
 \end{figure}
 ```
+### about the options
+In my opinions, the options is equal to .style. And the style file is similar to the enviroment of variables, where we can refer some instructions. There are there feasible way to define such a enviroment
+- firstly, we can dirctly define the tikzpicture option
+```
+\begin{tikzpicture}[
+	state/.style={
+	rectangle,
+	rounded corners,
+	draw=black, very thick,
+	minimum height=2cm,
+	inner sep= 0.5cm,
+	text centered]
+\end{tikzpicture}
+```
+- Secondly use the \tikzset
+```
+\tikzset{
+	state/.style={
+	rectangle,
+	rounded corners,
+	draw=black, very thick,
+	minimum height=2cm,
+	inner sep= 0.5cm,
+	text centered
+}}
+```
+- Thirdly use the \tikzstyle
+```
+\tikzstyle
+```
+
+Notice that we must take care to name a new instruction. Or it will conflict with the current instruction exist in the environment.
+``` 
+\tikzset{
+out/.style={thick, circle},}
+```
+The system will throw you a error, the key requires a value. It means the out is a key of the current instruction.
 
 ## Coordinates
 ```
