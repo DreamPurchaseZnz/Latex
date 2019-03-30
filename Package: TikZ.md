@@ -6,6 +6,139 @@
 
 [excellent tutorial](http://www.flutterbys.com.au/stats/tut/tut17.1a.html)
 
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+## Matrix of nodes and alignment
+A matrix of nodes is a TikZ matrix in which each cell contains a node, we can load the package
+```
+\usetikzlibrary{matrix}
+```
+The matrix have the following syntax
+```
+\path node[matrix] {}
+          \matrix (name) [style] {                  # for short
+1) Each row (including the last one) is ended by the command \\
+2) The character & is used to seperate cells
+3) Inside each cell you must place commands for drawing a picture
+4) It is not necessary to specify beforehand how many rows and columns there are going to be.
+}
+```
+where the style can be
+```
+matrix of nodes
+matrix of math nodes                        # math mode will be switched on in all nodes
+nodes in empty cells                        # if True, a node will be put in empty cells.
+```
+
+### matrix of nodes
+It provides each node in matrix with the specified name, where the name is set to <matrix name>-<row number>-<column number>
+```
+\begin{tikzpicture}
+\matrix (magic) [matrix of nodes]
+	{
+	8 & 1 & 6 \\
+	3 & 5 & 7 \\
+	4 & 9 & 2 \\
+	};
+	\draw[thick,red,->] (magic-1-1) |- (magic-2-3);       # node name
+\end{tikzpicture}
+```
+You may wish to add options to certain nodes in the matrix, this can be achieved in three ways
+- Fisrt method
+```
+\tikzstyle{row 2 column 3}=[red]                             # use the tikzstyle
+\matrix [matrix of nodes]
+{
+8 & 1 & 6 \\
+3 & 5 & 7 \\
+4 & 9 & 2 \\
+};	
+```
+- Special syntax
+
+```
+\begin{tikzpicture}
+\matrix [matrix of nodes]
+{
+8 & 1 & 6 \\
+3 & 5 & |[red]| 7 \\              # if a cell start with a vertical bar
+                                    then everything between this bar and the next bar 
+				    is passed on the node command
+4 & 9 & 2 \\
+};
+\end{tikzpicture}
+```
+Note that the & character alse takes an optional argument, which is an exra column skip
+
+```
+\begin{tikzpicture}
+\matrix [matrix of nodes]
+{
+8 &[1cm] 1 &[3mm] |[red]| 6 \\
+3 & 5 & |[red]| 7 \\
+4 & 9 & 2 \\
+};
+\end{tikzpicture}
+```
+
+- Rewrite the \node 
+```
+\begin{tikzpicture}
+\matrix [matrix of nodes]
+{
+8 & 1 & 6 \\
+3 & 5 & \node[red]{7}; \draw(0,0) circle(10pt);\\
+4 & 9 & 2 \\
+};
+\end{tikzpicture}
+```
+### Matrix options
+Setting and Adjusting Column and Row Spacing
+
+```
+every matrix/.style
+every cell
+cells
+nodes                                   # this option adds the option to "every node"
+column sep=<spacing list>                
+row sep
+colunm <number>                         # Used for every cell in column <number>
+every odd column
+every even column
+row
+every odd row
+every even row
+row <row number> column <number>
+execute at end cell
+execute at begin cell
+execute at empty cell
+matrix anchor
+anchor
+
+ampersand replacement                  # column seperator setting
+```
+
+```
+\begin{tikzpicture}
+\matrix [nodes={fill=blue!20,minimum size=5mm}]
+{
+\node {8}; & \node{1}; & \node {6}; \\
+\node {3}; & \node{5}; & \node {7}; \\
+\node {4}; & \node{9}; & \node {2}; \\
+};
+\end{tikzpicture}
+```
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 
 At least 70% of the figures found in the economic literature can be drawn with the commands I present here.
