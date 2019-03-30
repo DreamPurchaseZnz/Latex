@@ -24,7 +24,7 @@ The matrix have the following syntax
           \matrix (name) [style] {                  # for short
 1) Each row (including the last one) is ended by the command \\
 2) The character & is used to seperate cells
-3) Inside each cell you must place commands for drawing a picture
+3) Inside each cell you must place commands for drawing a picture, which is ended with semicolon ";"
 4) It is not necessary to specify beforehand how many rows and columns there are going to be.
 }
 ```
