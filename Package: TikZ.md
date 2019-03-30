@@ -402,6 +402,60 @@ node [block, below of=inte1] (ret1) {f};
 ```
 
 ## Draw lines and curves
+
+There are three way to connect the nodes 
+```
+1) --                  # Line-to operations 
+2) to 
+3) edge                # If many edge operation in a row, the start coordinate keep same
+4) ..control (x,y)..   # Curve to operation
+```
+**The line-to operation** extends the current path from the current point in a straight line to the given
+coordinate. 
+The “current point” is the endpoint of the previous drawing operation or the point specified
+by a prior move-to operation.
+```
+\path     --                     # two minus sign
+\path     -|                     # first horizontal, then vertical
+\path     |-
+```
+```
+\begin{tikzpicture}[line width=10pt]
+\draw (0,0) --(1,1) (1,1) --(2,0);
+\draw (3,0) -- (4,1) -- (5,0);
+\useasboundingbox (0,1.5); % make bounding box higher
+\end{tikzpicture}
+```
+**The curve-to operation** allow you extend a path using Bezier curve
+```
+\path ...  ..controls<c> and <d>..                # two control point
+```
+
+**The edge operation** works like a to operation that is added after the main path have been drawn, much like a node is added after the main path have drawn.
+It's syntax
+```
+\path .... edge [<option>] <nodes>.... 
+```
+
+if there are several edge operation in a row, the start coordinate is the same for all of them 
+as their target coordinates are not.
+```
+\begin{tikzpicture}
+	\foreach \name/\angle in {a/0,b/90,c/180,d/270}
+		\node (\name) at (\angle:1.5) {$\name$};
+	\path[->] (b) edge node[above right] {$5$} (a)
+		      edge (c)
+	   	      edge [-,dotted] node[below,sloped] {missing} (d)
+		  (c) edge (a)
+		      edge (d)
+		  (d) edge [red] node[above,sloped] {very}
+		     		 node[below,sloped] {bad} (a);
+\end{tikzpicture}
+```
+
+
+
+
 ### simple straight lines
 by default, coordinates are in centimeters
 
