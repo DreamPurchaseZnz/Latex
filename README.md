@@ -167,6 +167,35 @@ The optional argument \[counter\] causes the counter foo to be reset whenever th
 \refstepcounter{<ctr>}
 ```
 Like \stepcounter but you can use LATEX's referencing system to add a \label and later \ref the counter. The printed reference will be the current expansion of \the<ctr>.
+  
+### Cross reference
+
+One reason for numbering things like figures and equations is to refer the reader to them, as in "See Figure 3 for more details"
+```
+\label Assign             # a symbolic name to a piece of text.
+\pageref                  # Refer to a page number of the place where the corresponding 
+                            label command appears.
+\ref                      # Refer to a section, figure or similar and produce the number of the 
+                            corresponding sectional unit.
+```
+#### label
+```
+\label{key}
+```
+if appearing in the ordinary text, this command will assigns to the key the number of current sectional unit.
+
+if one appears inside a numbered environment, it will assigns that number to the key.
+
+To avoid create two labels with the same name, it is common to use labels consisting of a prefix and suffix seperated by colon.
+And the prefix conventionally used are:
+```
+cha for chapters
+sec for lower-level sectioning commands
+fig for figures
+tab for tables
+eq for equations
+```
+
 
 ## Paremeters
 
