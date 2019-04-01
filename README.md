@@ -1,4 +1,6 @@
 # Latex
+
+----------------------------------------------------------------------------------------------------------------------------------
 ## Spacing between the items 
 ```
 \begin{itemize}
@@ -9,7 +11,7 @@
 \end{itemize}
 ```
 
-
+----------------------------------------------------------------------------------------------------------------------------------
 ## parbox and minipage
 A parbox is a box whose contents are created in paragraph mode
 
@@ -24,18 +26,19 @@ For larger pieces of text, including ones containing a paragraph-making environm
 ```
 Footnotes in a minipage environment are handled in a way that is particularly useful for putting footnotes in figures or tables.
 
+----------------------------------------------------------------------------------------------------------------------------------
 ## New command
 ```
 \newcommand{\suma}{\Large$+$}
 ```
-
+----------------------------------------------------------------------------------------------------------------------------------
 ## Math operation
 ```
 multline
 align
 gather
 ```
----------------------------------------------basic-------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 # Latex2e Help
 [help](http://herbert.the-little-red-haired-girl.org/html/latex2e/Top.html)
 ```
