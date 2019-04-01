@@ -196,6 +196,96 @@ tab for tables
 eq for equations
 ```
 
+### definition
+```
+\newcommand                  # Define a new command.
+\newenvironment              # Define a new environment.
+\newtheorem                  # Define a new theorem-like environment.
+\newfont                     # Define a new font name
+```
+#### newcommand
+```
+ \newcommand{cmd}[args]{definition}
+ \newcommand{cmd}[args][default]{definition}
+ \renewcommand{cmd}[args]{definition}
+ \renewcommand{cmd}[args][default]{definition}
+```
+
+```
+cmd              # command name
+args             # an integer from 1-9 denoting the number of arguments of the command being defined.
+default          # If present, the first argument is optional. The default value is default.
+definition       # The text to be substituted for every occurence of cmd; 
+                   #n  in cmd is replaced by text of the nth argument when the substitution takes place.
+```
+```
+\newcommand{\wbalTwo}[2][Wikimedia]{
+  This is the Wikibook about LaTeX
+  supported by {#1} and {#2}!}
+  
+% in the document body:
+\begin{itemize}
+\item \wbalTwo{John Doe}
+\item \wbalTwo[lots of users]{John Doe}
+\end{itemize}
+```
+
+#### newenvironment
+```
+\newenvironment{nam}[args]{begdef}{enddef}
+\newenvironment{nam}[args][default]{begdef}{enddef}
+\renewenvironment{nam}[args]{begdef}{enddef}
+```
+```
+nam             # the name of environment
+args            # the number of arguments.
+default         # the first arguments is optional
+begdef          # when \begin{name} is encoutered, the material
+                  specified in the begdef is processed before text
+enddef          # Vice versa
+```
+```
+\newenvironment{king}
+{ \rule{1ex}{1ex}\hspace{\stretch{1}} }
+{ \hspace{\stretch{1}}\rule{1ex}{1ex} }
+
+\begin{king}
+My humble subjects \ldots
+\end{king}
+```
+```
+\newenvironment{topics}{
+\newcommand{\topic}[2]{ \item{##1 / ##2\} }
+Topics:
+\begin{itemize}
+}
+{
+\end{itemize}
+}
+```
+#### newtheorem
+```
+\usepackage{amsthm}
+\newtheorem{env_name}{printed output}[within]
+\newtheorem{env_name}[numbered_like]{printed output}
+```
+Often the counters are determined by section,for example "Theorem 2.3" refers to the 3rd theorem in the 2nd section of a document
+```
+env_name                        # name, it must not be the same name of an existing environment or counter.
+printed output                  # the text printed at the begining of the environment
+within                          # the counter of this new environment will be reset 
+                                  every time a new within environment is used.
+numbered_like                   # the even though a new environment is created, 
+                                  it will use the same counter as the numbered_like environment.
+```
+The \newtheorem command may have at most one optional argument.
+```
+\newtheorem{mydef}{Definition}
+
+\begin{mydef}
+Here is a new definition
+\end{mydef}
+```
 
 ## Paremeters
 
