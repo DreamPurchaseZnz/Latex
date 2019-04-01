@@ -1,7 +1,7 @@
 # Latex
 
 
-## Spacing between the items 
+## spacing between the items 
 
 ```
 \begin{itemize}
@@ -28,12 +28,12 @@ For larger pieces of text, including ones containing a paragraph-making environm
 Footnotes in a minipage environment are handled in a way that is particularly useful for putting footnotes in figures or tables.
 
 ----------------------------------------------------------------------------------------------------------------------------------
-## New command
+## new command creation
 ```
 \newcommand{\suma}{\Large$+$}
 ```
 ----------------------------------------------------------------------------------------------------------------------------------
-## Math operation
+## math operation
 ```
 multline
 align
