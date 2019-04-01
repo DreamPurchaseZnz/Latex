@@ -56,3 +56,34 @@ multline
 align
 gather
 ```
+---------------------------------------------basic-------------------------------------------------------------------------------------
+# Latex2e Help
+[help](http://herbert.the-little-red-haired-girl.org/html/latex2e/Top.html)
+
+
+## overview of latex and local guide
+
+The LaTeX command typesets a file of text using the TeX program and the LaTeX Macro package for TeX
+
+- A "Device Independent", or '.dvi' file: for device command translation
+- A "transcript" or "log" file: contain summary information and diagnostic messages for any errors discovered in the input file
+- An "auxiliary" or "aux" file: this is used by Latex itself, for things such as sectioning
+
+## command
+
+A latex command begins with the command name, which consists of a "\" followed by either
+- a string of letters
+- a single non-letter
+
+Arguments  contained in square brackets \[\], are optional while arguments contained in braces \{\} are required
+
+Note: Latex is case sensitive.
+
+
+
+
+
+
+
+
+
