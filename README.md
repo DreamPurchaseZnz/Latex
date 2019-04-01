@@ -1,4 +1,14 @@
 # Latex
+## Spacing between the items 
+```
+\begin{itemize}
+  \setlength\itemsep{1em}
+  \item one
+  \item two
+  \item three
+\end{itemize}
+```
+
 
 ## tabular
 ```
