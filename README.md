@@ -116,7 +116,7 @@ Below is a list of the counters used in Latex standard document classes to contr
 \usecounter                               # Use a specified counter in a list environment.
 \value                                    # Use the value of a counter in an expression.
 ```
-#### Setcounter
+#### setcounter
 The \setcounter command sets the value of the counter to that specified by the value argument. Syntax:
 ```
 \setcounter{counter}{value}
@@ -128,7 +128,7 @@ For example
 \item Something
 \end{enumerate}
 ```
-#### Counter manipulation
+#### counter manipulation
 ```
 \stepcounter{counter}
 ```
@@ -154,7 +154,7 @@ It can be used where LaTeX expects an integer or number, such as the second argu
 \hspace{\value{foo}\parindent}
 ```
 
-#### Define a counter
+#### define a counter
 
 The \newcounter command defines a new counter named foo. The counter is initialized to zero.
 
@@ -162,7 +162,7 @@ The optional argument \[counter\] causes the counter foo to be reset whenever th
 ```
 \newcounter{foo}[counter]
 ```
-#### Refer the step counter
+#### refer the step counter
 ```
 \refstepcounter{<ctr>}
 ```
@@ -196,7 +196,7 @@ tab for tables
 eq for equations
 ```
 
-### definition
+### Definition
 ```
 \newcommand                  # Define a new command.
 \newenvironment              # Define a new environment.
