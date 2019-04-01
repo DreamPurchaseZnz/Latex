@@ -156,7 +156,9 @@ Load the tikz libraries of your own choice
 ```
 Examples for libraries are
 ```
- "arrows", 
+ "arrows",              # for example use the arrow head type, >=stealth                     
+ "Positioning"          # for example the syntax: right=4pt of node name, compared with 
+                                                  right of = node name
  "automata",
  "backgrounds", 
  "calendar", 
