@@ -105,12 +105,12 @@ Everything latex numbers for you has a counter associated with it. The name of c
 Below is a list of the counters used in Latex standard document classes to control numbering. Counters in a document can be inremented,reset, accessed and referenced.
 ```
 \addtocounter                             # Add a quantity to a counter.
-\alph                                     # Print value of a counter using letters.
-\arabic                                   # Print value of a counter using numerals.
-\fnsymbol                                 # Print value of a counter using symbols.
+\alph{counter}                            # Print value of a counter using letters, a, b; Alph, A, B,C,..
+\arabic{counter}                          # Print value of a counter using numerals, 1, 2,...
+\fnsymbol                                 # Print value of a counter using symbols, value is in the range of 9.
 \newcounter                               # Define a new counter.
 \refstepcounter                           # Add to counter, resetting subsidiary counters.
-\roman                                    # Print value of a counter using roman numerals.
+\roman{counter}                           # Print value of a counter using roman numerals, i, ii;Roman, I, II, III...
 \setcounter                               # Set the value of a counter.
 \stepcounter                              # Add to counter, resetting subsidiary counters.
 \usecounter                               # Use a specified counter in a list environment.
@@ -129,9 +129,44 @@ For example
 \end{enumerate}
 ```
 #### Counter manipulation
+```
+\stepcounter{counter}
+```
+Two counters are used in the following code segment.
+```
+\section{Another section}
+This is a dummy section with no purpose whatsoever but to contain text. 
+This section has assigned the number \thesection.                          # the value of current section counter
+ 
+\stepcounter{equation}                                                     
+\begin{equation}
+\label{1stequation}
+\int_{0}^{\infty} \frac{x}{\sin(x)}
+\end{equation}
+```
 
+The \value command produces the value of the counter named in the mandatory argument
+```
+\value{counter}
+```
+It can be used where LaTeX expects an integer or number, such as the second argument of a \setcounter or \addtocounter command, or in:
+```
+\hspace{\value{foo}\parindent}
+```
 
+#### Define a counter
 
+The \newcounter command defines a new counter named foo. The counter is initialized to zero.
+
+The optional argument \[counter\] causes the counter foo to be reset whenever the counter named in the optional argument is incremented.
+```
+\newcounter{foo}[counter]
+```
+#### Refer the step counter
+```
+\refstepcounter{<ctr>}
+```
+Like \stepcounter but you can use LATEX's referencing system to add a \label and later \ref the counter. The printed reference will be the current expansion of \the<ctr>.
 
 ## Paremeters
 
