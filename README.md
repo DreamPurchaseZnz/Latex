@@ -102,7 +102,7 @@ Everything latex numbers for you has a counter associated with it. The name of c
  subsubsection
 ```
 
-Below is a list of the counters used in Latex standard document classes to control numbering
+Below is a list of the counters used in Latex standard document classes to control numbering. Counters in a document can be inremented,reset, accessed and referenced.
 ```
 \addtocounter                             # Add a quantity to a counter.
 \alph                                     # Print value of a counter using letters.
@@ -115,9 +115,20 @@ Below is a list of the counters used in Latex standard document classes to contr
 \stepcounter                              # Add to counter, resetting subsidiary counters.
 \usecounter                               # Use a specified counter in a list environment.
 \value                                    # Use the value of a counter in an expression.
-
 ```
-
+#### Setcounter
+The \setcounter command sets the value of the counter to that specified by the value argument. Syntax:
+```
+\setcounter{counter}{value}
+```
+For example
+```
+\begin{enumerate}
+\setcounter{enumi}{3}                     # sets the value of the item counter in the list to 3 
+\item Something
+\end{enumerate}
+```
+#### Counter manipulation
 
 
 
