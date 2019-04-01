@@ -93,7 +93,30 @@ Terminal Input/Output       # User interaction.
 Typefaces                   # Such as bold, italics etc.
 ```
 ### Counters
+Everything latex numbers for you has a counter associated with it. The name of counter is the same as the name of the environment or command that produces the nubmer. 
+```
+ part            paragraph       figure          enumi
+ chapter         subparagraph    table           enumii
+ section         page            footnote        enumiii
+ subsection      equation        mpfootnote      enumiv
+ subsubsection
+```
 
+Below is a list of the counters used in Latex standard document classes to control numbering
+```
+\addtocounter                             # Add a quantity to a counter.
+\alph                                     # Print value of a counter using letters.
+\arabic                                   # Print value of a counter using numerals.
+\fnsymbol                                 # Print value of a counter using symbols.
+\newcounter                               # Define a new counter.
+\refstepcounter                           # Add to counter, resetting subsidiary counters.
+\roman                                    # Print value of a counter using roman numerals.
+\setcounter                               # Set the value of a counter.
+\stepcounter                              # Add to counter, resetting subsidiary counters.
+\usecounter                               # Use a specified counter in a list environment.
+\value                                    # Use the value of a counter in an expression.
+
+```
 
 
 
