@@ -1,5 +1,26 @@
 # Latex
 
+## tabular
+```
+\begin{tabular}[pos]{cols}
+ column 1 entry & column 2 entry ... & column n entry \\
+ .
+ .
+ .
+ \end{tabular}
+
+                or
+
+ \begin{tabular*}{width}[pos]{cols}
+ column 1 entry & column 2 entry ... & column n entry \\
+ .
+ .
+ .
+ \end{tabular*}
+```
+
+
+
 ## parbox and minipage
 A parbox is a box whose contents are created in paragraph mode
 
