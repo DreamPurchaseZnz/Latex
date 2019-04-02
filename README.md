@@ -486,12 +486,39 @@ The itemize environment produces a "bulleted" list.
 ```
 the minipage environment is similar to a \parbox command. It is useful for putting footnotes in figure and tables. A \footnote or \footnotetext command puts the footnote at the bottom of the minipage instead of the bottom of the page.
 #### picture
+The picture environment allows you create just about any kind of picture you want containing text, lines, arrows and circles.
+
+A coordinate specifies a length in multiples of the unit length \unitlength. A position is a pair of coordinates, which are specified in the usual way with respect to an origin, which is normally at the lower-left corner of the picture.
+
+```
+\begin{picture}(width,height)(x offset,y offset)
+  .
+  .
+  picture commands
+  .
+  .
+ \end{picture}
+```
+The width and height specify the size of the picture. And the x_offset, y_offset specify the origin of the coordinates.
+
+Everything that appears in a picture is drawn by the \put command. 
+```
+\put (11.3,-.3){...}              # reference point
 ```
 ```
-
-
-
-
+\circle[*]{diameter}                                # Draw a circle; * refers to solid circle
+\dashbox{dash_length}(width,height){...}            # Draw a dashed box.
+\frame{}                                            # Draw a frame around an object.
+\framebox                                           # (picture) Draw a box with a frame around it.
+\line(x slope,y slope){length}                      # Draw a straight line.
+\linethickness                                      # Set the line thickness.
+\makebox                                            # (picture) Draw a box of the specified size.
+\multiput                                           # Draw multiple instances of an object.
+\oval                                               # Draw an ellipse.
+\put                                                # Place an object at a specified place.
+\shortstack                                         # Make a pile of objects.
+\vector                                             # Draw a line with an arrow.
+```
 
 
 
