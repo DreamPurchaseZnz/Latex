@@ -286,6 +286,78 @@ The \newtheorem command may have at most one optional argument.
 Here is a new definition
 \end{mydef}
 ```
+### Document classes
+Valid document classes include:
+```
+article
+slides
+book
+report
+letter
+```
+They are selected with the following command:
+```
+\documentclass [options] {class}
+```
+Options: Selecting the typeface (10pt is default)
+```
+10pt, 11pt, 12pt
+```
+Options: selecting the paper size
+```
+a4paper, a5paper, b5paper, letter paper, legal paper, executivepaper
+```
+Miscellaneous options
+```
+landscape                   # selects landscape format. Default is portrait.
+titlepage, notitlepage      # selects if there should be a separate title page.
+leqno                       # equation number on left side of equations. Default is right side.
+fleqn                       # displayed formulas flush left. Default is centred.
+openbib                     # use "open" bibliography format.
+draft, final                # mark/do not mark overfull boxes with a rule. Default is final.
+```
+These options are not available with the slides class:
+```
+oneside, twoside            # selects one- or twosided layout. Default is oneside, except for the book class.
+openright, openany          # determines if a chapter should start on a right-hand page. Default is openright for book.
+onecolumn, twocolumn        # one or two columns. Defaults to one column.
+```
+If you specify more than one option, they must be seperated by a comma.
+### Environment
+latex provides a number of different paragraph-making environments
+```
+\begin{environment-name}
+        .
+\end{environment-name}
+```
+```
+array                     # Math arrays.
+center                    # Centred lines.
+description               # Labelled lists.
+enumerate                 # Numbered lists.
+eqnarray                  # Sequences of aligned equations.
+equation                  # Displayed equation.
+figure                    # Floating figures.
+flushleft                 # Flushed left lines.
+flushright                # Flushed right lines.
+itemize                   # Bulleted lists.
+letter                    # Letters.
+list                      # Generic list environment.
+minipage                  # Miniature page.
+picture                   # Picture with text, arrows, lines and circles.
+quotation                 # Indented environment with paragraph indentation.
+quote                     # Indented environment with no paragraph indentation.
+tabbing                   # Align text arbitrarily.
+table                     # Floating tables.
+tabular                   # Align text in columns.
+thebibliography           # Bibliography or reference list.
+theorem                   # Theorems, lemmas, etc.
+titlepage                 # For hand crafted title pages.
+verbatim                  # Simulating typed input.
+verse                     # For poetry and other things.
+```
+
+
 
 ## Paremeters
 
