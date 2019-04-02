@@ -28,17 +28,7 @@ For larger pieces of text, including ones containing a paragraph-making environm
 Footnotes in a minipage environment are handled in a way that is particularly useful for putting footnotes in figures or tables.
 
 ----------------------------------------------------------------------------------------------------------------------------------
-## new command creation
-```
-\newcommand{\suma}{\Large$+$}
-```
-----------------------------------------------------------------------------------------------------------------------------------
-## math operation
-```
-multline
-align
-gather
-```
+
 ----------------------------------------------------------------------------------------------------------------------------------
 # Latex2e Help
 [help](http://herbert.the-little-red-haired-girl.org/html/latex2e/Top.html)
