@@ -356,6 +356,117 @@ titlepage                 # For hand crafted title pages.
 verbatim                  # Simulating typed input.
 verse                     # For poetry and other things.
 ```
+#### array
+math array are produced with the array environment, it has a mandatory argument 
+decribing the number of columns and alignment within them
+
+```
+\begin{array}{col1col2...coln}
+column 1 entry & column 2 entry ... & column n entry \\  
+ .
+ .
+ .
+\end{array}
+```
+NOTE: 1) Each column col is specifed by a single letter that tells how items in that row should be formatted
+```
+l             flush left
+c
+r
+```
+2) Column entries must be seperated by an &. Each row of the array must be terminated with the string \\
+
+3) Note that the array can only be used in math mode. So normally it is used inside an equation environment.
+
+#### center
+```
+ \begin{center}                       # centered within the left and right margin
+ Text on line 1 \\                    # each line must terminate with the string \\
+ Text on line 2 \\
+ .
+ .
+ .
+ \end{center}
+```
+\center: the declaration form of the center environment. Usually it is used in the quote, figure, table or parbox environment. 
+The declaration is terminated with blank line or \end command
+#### discription
+```
+ \begin{description}                 # make labeled lists.
+ \item [label] First item            # the label is bold face and flushed right.
+ \item [label] Second item
+ .
+ .
+ .
+ \end{description}
+```
+#### enumerate
+It produces a numbered list; Enumerations can be nested within one another, up to four levels deep.
+
+They can be nested within other paragraph-making environments
+```
+\begin{enumerate}                  
+ \item First item
+ \item Second item
+ .
+ .
+ .
+ \end{enumerate}
+```
+#### eqnarray
+The environment is used to display a sequence of equations or inequalities.
+```
+ \begin{eqnarray}
+ math formula 1 \\
+ math formula 2 \\
+ .
+ .
+ .
+ \end{eqnarray}
+```
+It is very much like a three column environment with consecutive rows seperated by \\ and the consecutive items with a row seperated
+by an &
+
+An equation number is placed on every line unless that line has a \nonumber command. The command \lefteqn is used to splitting long formulas across lines.
+#### equation
+The equation environment centres your equation on the page and places the equation number on the right margin.
+```
+ \begin{equation}
+  math formula
+ \end{equation}
+```
+#### figure
+Figure are objects that are not part of the normal text and usually floated to a convenient place.
+```
+ \begin{figure}[placement]
+
+  body of the figure
+
+ \caption{figure title}
+ \end{figure}
+```
+The placement determines where Latex will try to place your figure. There are four places
+```
+h (Here)            # at the position in the text where the figure environment appears.
+t (Top)             # at the top of a text page.
+b (Bottom)          # at the bottom of a text page.
+p (Page of floats)  # on a separate float page, which is a page containing no text, only floats
+```
+The standard report and article use the default placement tbp.
+
+The caption command allows you to title your figure.
+#### flushleft and flushright
+```
+ \begin{flushleft}
+ Text on line 1 \\
+ Text on line 2 \\
+ .
+ .
+ .
+ \end{flushleft}
+```
+The flush environment allows you to create a paragraph consisting of lines that are flushed left, to the left-hand margin.
+
 
 
 
