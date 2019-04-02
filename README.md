@@ -605,7 +605,7 @@ b : Bottom - at the bottom of a text page.
 p : Page of floats - on a separate float page, which is a page containing no text, only floats.
 ```
 #### tabular
-This 
+These environments produce a box consisting of rows of items, aligned vertically in columns.
 ```
  \begin{tabular}[pos]{cols}
  column 1 entry & column 2 entry ... & column n entry \\
@@ -623,13 +623,72 @@ This
  .
  \end{tabular*}
 
-···
+```
 
+```
+width            # specifies the width of the tabular* environment.
+                   There must be rubber space between columns that 
+		   can stretch to fill out the specified width.
 
-
-
-
-
+```
+options-pos, specifies the vertical position. default is alignment on the center of the environment
+```
+t - align on top row
+b - align on bottom row
+```
+options-col, specifies the column formatting.
+it consists of the following specifier, corresponding to the sequence of columns and itercolumn material
+```
+l                      # A column of left-aligned items.
+r                      # A column of right-aligned items.
+c                      # A column of centred items.
+|                      # A vertical line the full height and depth of the environment.
+@{text}                # This inserts text in every row. 
+                         An @-expression suppresses the intercolumn space normally inserted between columns;
+			 any desired space between the inserted text and the adjacent items must be included in text. 
+			 An \extracolsep{wd} command in an @-expression causes an extra space of width wd to 
+			 appear to the left of all subsequent columns, until countermanded by another \extracolsep command. 
+			 Unlike ordinary intercolumn space, this extra space is not suppressed by an @-expression. 
+			 An \extracolsep command can be used only in an @-expression in the cols argument.
+p{wd}                  # Produces a column with each item typeset in a parbox of width wd, 
+                         as if it were the argument of a \parbox[t]{wd} command. 
+			 However, a \\ may not appear in the item, except in the following situations:
+			 inside an environment like minipage, array, or tabular.
+			 inside an explicit \parbox.in the scope of a \centering, \raggedright, or \raggedleft declaration. 
+			 The latter declarations must appear 
+			 inside braces or an environment when used in a p-column element.
+*{num}{cols}           # Equivalent to num copies of cols, where num is any positive integer and 
+			 cols is any list of column-specifiers, which may contain another *-expression.
+```
+```
+\begin{tabular}{r@{.}l}
+  3   & 14159 \\
+  16  & 2     \\
+  123 & 456   \\
+\end{tabular}
+```
+These commands can be used inside a tabular environment
+```
+\cline{i-j}                        # Draw a horizontal line spanning 
+			             beginning in column i and ending in column j
+\hline                	           # Draw a horizontal line spanning all columns.
+\multicolumn{cols}{pos}{text}      # Make an item spanning several columns； cols specifies the number to span.
+				     pos specifies the formatting, flush right or left.
+\vline                             # Draw a vertical line, it can be used in the@expression.
+```
+```
+\begin{tabular}{ |l|l| }
+  \hline
+  \multicolumn{2}{|c|}{Team sheet} \\
+  \hline
+  GK & Paul Robinson \\
+  LB & Lucas Radebe \\
+  DC & Michael Duberry \\
+  DC & Dominic Matteo\\
+  \hline
+\end{tabular}
+```
+#### thebibliography
 
 
 
