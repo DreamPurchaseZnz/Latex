@@ -519,13 +519,111 @@ Everything that appears in a picture is drawn by the \put command.
 \shortstack                                         # Make a pile of objects.
 \vector                                             # Draw a line with an arrow.
 ```
+#### quotation
+The quotation environment are indented on the right and the left. The texts are justified at both margin.
 
+Leaving a blank line between text produce a new paragraph.
+```
+ \begin{quotation}
+  text
+ \end{quotation}
+```
+The syntax is same as that of quote command
 
+#### tabbing
+```
+\begin{tabbing}
+ text \= more text \= still more text \= last text \\
+ second row \>  \> more \\
+ .
+ .
+ .
+ \end{tabbing}
+```
+The \hspace command is useful for controlling horizontal space in the tabbing environment
 
+it is best suited for cases where the width of each column is constant and known in advance
+```
+\=                        # (set tab) 
+\>                        # (advance to next tab stop only at this line) 
+\<                        # (put things to the left margin)
+\+                        # (indent; move margin right)
+                            Moves the left margin of the next 
+                            and all the following commands one tab stop to the right. 
+\-                        # (unindent; move margin left) 
+\'                        # Moves everything that you have typed so far in the current column, 
+                            i.e. everything from the most recent \>, \<, \', \\, or \kill command, 
+                            to the right of the previous column, flush against the current column's tab stop.
+\`                        # Allows you to put text flush right against any tab stop, 
+                            including tab stop 0. However, it can't move text to the right of the last column 
+                            because there's no tab stop there. 
+                            The \` command moves all the text that follows it, up to the \\ or \end{tabbing} command 
+                            that ends the line, to the right margin of the tabbing environment. 
+                            There must be no \> or \' command between the \` and the command that ends the line.
+\\                        # (end of line; newline) 
+\kill                     # (ignore preceding text; use only for spacing) 
+\pushtabs                 # save all the tab stop positions
+\poptabs	                # restore the tab stop positions
+\a	                      # \accent
+```
+An example is as follows:
+```
+  \begin{tabbing}
+        function \= fact(n : integer) : integer;\\                 |-\-
+                 \> begin \= \+ \\                                 \-|-\-\
+                       \> if \= n $>$ 1 then \+ \\                 \-\-|-\-\
+                                fact := n * fact(n-1) \- \\        \-\-|-\-\
+                          else \+ \\                               \-|-\-\-\
+                                fact := 1; \-\- \\                 \-\-|-\-\
+                    end;\\                                         |-\-\-\-\
+        \end{tabbing}
+```
+```
+\begin{tabbing}
+	if \= (condition) \{ \\ % inserts a tab just after the "if"-command.
+	\> then statement \=\\ % go to the defined tab and set a new one
+	\}\\
+	else \{ \\
+	\> else statement     \> next tab is here\\
+	\}\\
+\end{tabbing}
+```
+#### table
+```
+\begin{table}[placement]
 
+  body of the table
 
+ \caption{table title}
+ \end{table}
+```
+The position argument
+```
+h : Here - at the position in the text where the table environment appears.
+t : Top - at the top of a text page.
+b : Bottom - at the bottom of a text page.
+p : Page of floats - on a separate float page, which is a page containing no text, only floats.
+```
+#### tabular
+This 
+```
+ \begin{tabular}[pos]{cols}
+ column 1 entry & column 2 entry ... & column n entry \\
+ .
+ .
+ .
+ \end{tabular}
+ 
+ or
+ 
+ \begin{tabular*}{width}[pos]{cols}
+ column 1 entry & column 2 entry ... & column n entry \\
+ .
+ .
+ .
+ \end{tabular*}
 
-
+···
 
 
 
