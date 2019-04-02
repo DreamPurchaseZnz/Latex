@@ -467,6 +467,55 @@ The caption command allows you to title your figure.
 ```
 The flush environment allows you to create a paragraph consisting of lines that are flushed left, to the left-hand margin.
 
+#### itemize
+The itemize environment produces a "bulleted" list.
+```
+ \begin{itemize}
+ \item First item
+ \item Second item
+ .
+ .
+ .
+ \end{itemize}
+```
+#### list
+```
+ \begin{list}{label}{spacing}
+ \item First item
+ \item Second item
+ .
+ .
+ .
+ \end{list}
+```
+#### minipage
+```
+ \begin{minipage}[position]{width}
+  text
+ \end{minipage}
+```
+the minipage environment is similar to a \parbox command. It is useful for putting footnotes in figure and tables. A \footnote or \footnotetext command puts the footnote at the bottom of the minipage instead of the bottom of the page.
+#### picture
+```
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
