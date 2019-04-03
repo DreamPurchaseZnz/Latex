@@ -689,7 +689,102 @@ These commands can be used inside a tabular environment
 \end{tabular}
 ```
 #### thebibliography
+The environment produces a bibliography or reference list. In the article class, this reference list is labelled "References"; in the report class, it is labelled "Bibliography"
+```
+ \begin{thebibliography}{widest-label}
+ \bibitem[label]{cite_key}                 # an entry labelled by label
+ .
+ .
+ .
+ \end{thebibliography}
+```
+```
+\bibitem                                   # Specify a bibliography item.
+\cite                                      # Refer to a bibliography item.
+\nocite                                    # Include an item in the bibliography.
+Using BibTeX                               # Automatic generation of bibliographies.
+```
+#### bibitem
+```
+ \bibitem[label]{cite_key}                 # if the label is missing, a number is generated as the label,
+                                             using the enumi counter
+```
+Notice the key cannot contain a comma. This command write an entry to ".aux" file containing key and the item's label. When this ".aux" file is read by the begin{document} command, the item's label is associated with cite_key, causing the reference to cite_key by a \cite
+command to produce the associated label.
+#### cite
+```
+\cite[text]{key_list}              # A list of citation keys
+				     The optional text argument will 
+				     appear after the citation
+```
+#### nocice
+```
+\nocice{key_list}                  # produce no text, but write key_list
+```
+#### BibTex
+```
+\bibliographystyle{style}
+\bibliography{bibfile}
+```
+where the style refers to a file *style.bst*, which defines how your citations will look. The standard styles distributed with
+BibTex are:
+```
+alpha	     # Sorted alphabetically. Labels are formed from name of author and year of publication.
+plain	     # Sorted alphabetically. Labels are numeric.
+unsrt	     # Like plain, but entries are in order of citation.
+abbrv	     # Like plain, but more compact labels.
+```
+The argument to the \bibliograhpy refers to the file bibfile.bib, which should contain your database in BibTex format.
+And only the entries referred to via \cite and \nocite will be listed in the bibliography.
 
+#### theorem
+It produces "Theorem x" in boldface followed by your theorem text.
+```
+ \begin{theorem}
+  theorem text
+ \end{theorem}
+```
+#### title page
+It creates a title page with no printed page number or heading.
+
+Formating the title page is left to you.
+```
+\begin{titlepage}
+  text
+\end{titlepage}
+```
+\maketitle can be used to produce a standard title page.
+#### verbatim
+It is a paragraph-making environment that get tex to print what you exactly what you type in.
+```
+\begin{verbatim}
+  text
+\end{verbatim}
+```
+
+```
+\verb char literal_text char              # typesets the literal-text as typed.
+\verb*char literal_text char
+```
+```
+\begin{verbatim}
+\textbf{Bold}                 # it doesnot work
+\textit{italics}
+\textsf{sans serif}
+\end{verbatim}
+```
+#### Verse
+It is designed for poetry
+```
+\begin{verse}
+  text
+ \end{verse}
+```
+The margins are indented on the left and the right. 
+Separate the lines of each stanza with \\, 
+and use one or more blank lines to separate the stanzas
+
+### Footnotes
 
 
 
