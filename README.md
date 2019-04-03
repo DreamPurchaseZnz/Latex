@@ -773,7 +773,7 @@ It is a paragraph-making environment that get tex to print what you exactly what
 \textsf{sans serif}
 \end{verbatim}
 ```
-#### Verse
+#### verse
 It is designed for poetry
 ```
 \begin{verse}
@@ -785,6 +785,158 @@ Separate the lines of each stanza with \\,
 and use one or more blank lines to separate the stanzas
 
 ### Footnotes
+```
+\footnote[number]{text}                   # Insert a footnote
+                                            can only be used in outer paragraph mode
+\footnotemark[\value{footnote}]           # Insert footnote mark only.
+					    can be used in inner paragraph mode
+					    (figure, table and etc.)
+\footnotetext[number]{text}               # Insert footnote text only.
+				            must appear in outer paragraph mode
+```
+the footnote optional number argument is used to change the default footnote number.
+```
+\footnotemark
+% ...
+Somewhere else\footnotetext{This is my footnote!}
+```
+```
+\footnotemark[17]
+% ...
+Somewhere else\footnotetext[17]{This is my footnote!}
+```
+### Layout
+control the general layout of the page
+```
+\flushbottom                        # Make all text pages the same height, adding the extra vertical space if
+				      necessary to fill out the page. if two column mode is selected, it is standard
+\onecolumn                          # Use one-column layout; start a new page and produce single-column output
+\raggedbottom                       # Allow text pages of differing height; 
+ 				      make all pages the height of the text on that page, no extra vertical space is added
+\twocolumn[text]                    # Use two-column layout. start a new page and produce two-column output
+				      if text is present, it is typeset in one-column in one-column mode.
+```
+```
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+ 
+\usepackage{multicol}
+ 
+\begin{document}
+\begin{multicols}{3}
+[
+\section{First Section}
+All human things are subject to decay. And when fate summons, Monarchs must obey.
+]
+Hello, here is some text without a meaning.  This text should show what 
+a printed text will look like at this place.
+If you read this text, you will get no information.  Really?  Is there 
+no information?  Is there...
+\end{multicols}
+ 
+\end{document}
+```
+### Length
+Length unit
+```
+pt, mm, cm, in                      # points, milimetres
+ex, em                              # depend on the font size. ex-> the height of  "x", em-> the height of "M"
+```
+
+A length is a measure of distance. Many Latex commands take a length as an argument.
+```
+\newlength{\lenght_name}                        # Define a new length.
+\setlength{\gnat}{length}                       # Set the value of a length.
+\addtolength{\gnat}{length}                     # Add a quantity to a length.
+\settodepth{\gnat}{text}                        # Set a length to the depth of something.
+\settoheight{\gnat}{text}                       # Set a length to the height of something.
+\settowidth{\gnat}{text}                        # Set a length to the width of something.
+```
+Predefined{\gnat}{text}                         # lengths Lengths that are, like, predefined.
+```
+\baselineskip             # The normal vertical distance between lines in a paragraph.
+\baselinestretch          # A factor multiplying \baselineskip. 
+			    Has to be set with \renewcommand{\baselinestretch}{factor}
+\columnsep                # The distance between columns.
+\columnwidth              # The width of the column.
+\evensidemargin           # The margin for 'even' pages (think of a printed booklet).
+\linewidth                # The width of a line in the local environment.
+\oddsidemargin            # The margin for 'odd' pages (think of a printed booklet).
+\paperwidth               # The width of the page.
+\paperheight              # The height of the page.
+\parindent                # The normal paragraph indentation.
+\parskip                  # The extra vertical space between paragraphs.
+\tabcolsep                # The default separation between columns in a tabular environment.
+\textheight               # The height of text on the page.
+\textwidth                # The width of the text on the page.
+\topmargin                # The size of the top margin.
+\unitlength               # Units of length in picture environment.
+```
+###  Letters
+be designed to make a number of letters at once, although you can make just one if you desire.
+```
+ \documentclass{letter}
+ \begin{document}
+  ... letters ...
+ \end{document}
+```
+```
+\address                    # Your return address.
+\cc                         # Cc list.
+\closing                    # Saying goodbye.
+\encl                       # List of enclosed material.
+\location                   # Your organisation's address.
+\makelabels                 # Making address labels.
+\name                       # Your name, for the return address.
+\opening                    # Saying hello.
+\ps                         # Adding a postscript.
+\signature                  # Your signature.
+\startbreaks                # Allow page breaks.
+\stopbreaks                 # Disallow page breaks.
+\telephone                  # Your phone number.
+```
+### Line and page breaking
+```
+\\                          # Start a new line.
+\-                          # (hyphenation) Insert explicit hyphenation.
+\cleardoublepage            # Start a new right-hand page.
+\clearpage                  # Start a new page and all the figures and tables in the input are printed
+\enlargethispage{size}      # Enlarge the current page a bit.
+\fussy                      # Be fussy about line breaking; this can avoid too much space between words 
+			      but may produce fullboxes
+\hyphenation{words}         # Tell LaTeX how to hyphenate a word
+			      each hyphenation point is indicated by a - character.
+\linebreak[number]          # Break the line at the point of current command;
+			      the number can convert the \linebreak from a demand to a request.
+			      The higher the number, the more insistent the request is.[0-4]
+\newline                    # Break the line prematurely.
+\newpage                    # Start a new page.
+\nolinebreak[number]        # Don't break the current line.
+\nopagebreak[number]        # Don't make a page break here.
+\pagebreak                  # Please make a page break here.
+\sloppy                     # Be sloppy about line breaking.
+```
+```
+\\[*][extra-space]          # * tell the tex not to start a new page after this line; 
+			      extra-space is the vertical space inserted before the next line, can be negative
+```
+### Making paragraphs
+```
+\indent                     # Indent this paragraph.
+\noindent                   # Do not indent this paragraph.
+\par                        # Another way of writing a blank line.
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
