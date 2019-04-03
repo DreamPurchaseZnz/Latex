@@ -927,16 +927,206 @@ be designed to make a number of letters at once, although you can make just one 
 \noindent                   # Do not indent this paragraph.
 \par                        # Another way of writing a blank line.
 ```
+\par  It ends horizontal mode, causes TeX to break the horizontal text into lines placed on the current vertical list, and exercises the page breaker which may possibly cause the next page to be shipped out.
 
+### Margin notes
+create a note in the margin. The first line will be at the same height as the line in text where the \marginpar occurs
+```
+\marginpar[left text]{right text}
+```
+When you only specify the mandatory argument right, the text will be placed
+```
+in the right margin for one-sided layout
+in the outside margin for two-sided layout
+in the nearest margin for two-column layout.	
+```
+By issuing the command \reversemarginpar, you can force the marginal notes to go into the opposite (inside) margin.
 
+When you specify both arguments, left is used for the left margin, and right is used for the right margin, this is valid when
+it comes to the two-side layout
 
+The first word will normally not be hyphenated; you can enable hyphenation by prefixing the first word with a \hspace{0pt} command.
 
+To insert a margin note in an area that \marginpar can't handle, such as footnotes or equation environments, use the package marginnote 
+```
+\usepackage{marginnote}
+```
+and use the geometry package with custom sizes
+```
+\usepackage[top=Bcm, bottom=Hcm, 
+	    outer=Ccm,                    # right 
+	    inner=Acm,                    # left
+	    heightrounded, 
+	    marginparwidth=Ecm, 
+	    marginparsep=Dcm              # between par and marginpar
+	    ]{geometry}
+```
+```
+\marginnote{typeset text here...}[Fcm]               # F is downward vertical 
+						       offset between marginpars
+```
+### math formulae
+There are three environment that put Latex in math mode
+```
 
+math	                   # For Formulae that appear right in the text
+displaymath	           # For Formulae that appear on their own line.
+equation	           # The same as the displaymath environment 
+                             except that it adds an equation number in the right margin.
+```
+The following short form is as follows. Both displaymath and equation are used only in paragraph mode
+```
+\(...\)     instead of     \begin{math}...\end{math}
+```
+```
+\[...\]     instead of     \begin{displaymath}...\end{displaymath}
+```
+In fact, the math environment is so common that it has an even shorter form:
+```
+$ ... $     instead of     \(...\)
+```
 
+```
+Subscripts & Superscripts                   # Also known as exponent or index.  _ and ^
+Math Symbols                                # Various mathematical squiggles.
+Spacing in Math Mode                        # Thick, medium, thin and negative spaces.
+Math Miscellany                             # Stuff that doesn't fit anywhere else.
+```
+LaTeX provides the following four commands for use in math mode
+```
+\; - a thick space
+\: - a medium space
+\, - a thin space
+\! - a negative thin space
+```
+```
 
+\cdots	            # Produces a horizontal ellipsis where 
+                      the dots are raised to the centre of the line.
+\ddots	            # Produces a diagonal ellipsis.
+\frac{num}{den}	    # Produces the fraction num divided by den.
+\ldots	            # Produces an ellipsis. 
+                      This command works in any mode, not just math mode.
+\overbrace{text}    # Generates a brace over text.
+\overline{text}	    # Causes the argument text to be overlined.
+\sqrt[root]{arg}    # Produces the square root of its argument. 
+                      The optional argument, root, determines what root to produce, i.e., 
+		      the cube root of x+y would be typed as $\sqrt[3]{x+y}$.
 
+\underbrace{text}   # Generates text with a brace underneath.
+\underline{text}    # Causes the argument text to be underlined. 
+                      This command can also be used in paragraph and LR modes.
+\vdots	            # Produces a vertical ellipsis.
+```
+### Modes
+When processing your input text, it is always in one of three modes: 
+```
+Paragraph mode                                   # ordinary text
+Math mode
+Left-to-right mode, called LR mode for short     # latex keep going from left to right
+                                                   it never start a new line
+						   it may complain because of the resulting box
+						   was too wide to fit on the line.
+```
+### Page style
+The \documentclass command determines the size and position of the page's head and foot. 
+The page style determines what goes in them.
+```
+\maketitle                        # Generate a title page.
+\pagenumbering                    # Set the style used for page numbers.
+\pagestyle                        # Change the headings/footings style.
+\thispagestyle                    # Change the headings/footings style for this page.
+```
+#### make title
+```
+\maketitle
+```
+This command generates a title on a seperate title page- except in the article class, where the title normally goes at the top
+of the first page. Information used to produce the title obtained from the following declarations
+```
+\author{names}               # Who wrote this stuff?
+\date{text}                  # The date the document was created.
+\thanks{text}                # A special form of footnote. It is used in the title environment
+\title{text}                 # How to set the document title
+			       Use \\ tell latex where to start a new line in a long line
+```
+The \author command declares the author(s),
+where names is a list of authors separated by \and commands. 
+Use \\ to separate lines within a single author's entry -- for example, to give the author's institution or address.
 
+```
 
+\documentclass{article}% use option titlepage to get the title on a page of its own.
+\usepackage{blindtext}
+\title{The Triangulation of Titling Data in Non-Linear Gaussian Fashion via $\rho$ Series\thanks{No procrastination}}
+\date{2017\\ December}
+\author{John Doe\\ Magic Department\thanks{I am no longer a member of this department}, Richard Miles University 
+\and Richard Row, \LaTeX\ Academy}
+\begin{document}
+\maketitle
+\section{Introduction}
+\blindtext
+\end{document}
+```
+#### page numbering
+```
+\pagenumbering{num_style}
+```
+Possible value of num_style
+```
+arabic    - Arabic numerals
+roman     - Lowercase Roman numerals
+Roman     - Uppercase Roman numerals
+alph      - Lowercase letters
+Alph      - Uppercase letters
+```
+#### pagestyle
+```
+\pagestyle{option}
+```
+
+the pagestyle changes the style from the current page throughout the remainder of your document
+```
+plain              # Just a plain page number.
+empty              # Produces empty heads and feet - no page numbers.
+headings           # Puts running headings on each page. 
+	             The document style specifies what goes in the headings.
+myheadings         # You specify what is to go in the heading with 
+                     the \markboth or the \markright commands.
+```
+The myheadings pagestyle displays the page number on top of the page in the outer corner.
+myheadings: As shown in the introduction,The footer is empty in this page style. The header contains the page number on right side (on even pages) or on left side (on odd pages) along with other user-supplied information; there is an exception for the first page of each chapter, where the footer contains centred page number while the header is blank.
+
+The \markboth command is used in conjunction with the page style myheadings for setting both the left and the right heading. 
+You should note that a \`\`left-hand heading\'\' is generated by the last \markboth command before the end of the page, while a \`\`right-hand heading\'\' is generated by the first \markboth or \markright that comes on the page if there is one, otherwise by the last one before the page.
+```
+\markboth{left head}{right head}          # Set left and right headings; 
+				            it doesn't make sense in the one-side mode
+\markright                                # Set right heading only.
+```
+
+### Sectioning
+struct your text into units
+```
+\part
+\chapter (report and book class only)
+\section
+\subsection
+\subsubsection
+\paragraph
+\subparagraph
+```
+All sectioning commands have \*-forms that print a title, but do not include a number and do not make an entry in the table of contents.
+```
+\appendix
+```
+The \appendix command changes the way sectional units are numbered. The \appendix command generates no text and does not affect the numbering of parts. The normal use of this command is something like
+```
+\chapter{The First Chapter}
+...
+\appendix
+\chapter{The First Appendix}
+```
 
 
 
