@@ -1127,6 +1127,179 @@ The \appendix command changes the way sectional units are numbered. The \appendi
 \appendix
 \chapter{The First Appendix}
 ```
+### Spaces and boxs
+Horizontal space
+```
+\dotfill                       # Stretchable horizontal dots.
+\hfill                         # Stretchable horizontal space.
+\hrulefill                     # Stretchable horizontal rule.
+\hspace[*]{length}             # Fixed horizontal space. 
+				* indicates the space is never removed, 
+				even at the end of line
+\addvspace{length}             # Fixed vertical space.
+\bigskip                       # Fixed vertical space.
+\medskip                       # Fixed vertical space.
+\smallskip                     # Fixed vertical space.
+\vfill                         # Stretchable vertical space.
+\vspace                        # Fixed vertical space. Boxes
+\fbox{text}                    # Framebox. same as the mbox except that it puts a frame outside
+\framebox                      # Framebox, adjustable position.
+lrbox                          # An environment like \sbox.
+\makebox                       # Box, adjustable position.
+\mbox{}                        # Box.
+\newsavebox                    # Declare a name for saving a box.
+\parbox                        # Box with text in paragraph mode.
+\raisebox                      # Raise or lower text.
+\rule                          # Lines and squares.
+\savebox                       # Like \makebox, but save the text for later use.
+\sbox                          # Like \mbox, but save the text for later use.
+\usebox                        # Print saved text.
+```
+#### makebox
+The \makebox command creates a box just wide enough to contain the text specified. 
+```
+\makebox[width][position]{text}
+```
+The width of the box is specified by the optional width argument. 
+The position of the text within the box is determined by the optional position argument.
+```
+c --- centred (default)
+l --- flushleft
+r --- flushright
+s --- stretch from left to right margin. The text must contain stretchable space for this to work.
+```
+#### framebox
+```
+\framebox[width][position]{text}
+```
+The \framebox command is exactly the same as the \makebox command, 
+except that it puts a frame around the outside of the box that it creates
+
+```
+
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+ 
+\begin{document}
+ 
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{\centering
+Answer the questions in the spaces provided. If you run out of room
+for an answer, continue on the back of the page.}}}
+\end{center}
+ 
+\vspace{5mm}
+ 
+\makebox[\textwidth]{Name and section:\enspace\hrulefill}
+ 
+\vspace{5mm}
+ 
+\makebox[\textwidth]{Instructor’s name:\enspace\hrulefill}
+ 
+\begin{questions}
+\question Is it true that \(x^n + y^n = z^n\) if \(x,y,z\) and \(n\) are
+positive integers?. Explain.
+ 
+\question Prove that the real part of all non-trivial zeros of the function
+\(\zeta(z)\) is \(\frac{1}{2}\)
+ 
+\question Compute \[\int_{0}^{\infty} \frac{\sin(x)}{x}\]
+\end{questions}
+```
+#### parbox
+A parbox is a box whose contents are created in paragraph mode
+```
+\parbox[position][height][inner-pos]{width}{text}
+```
+Two mandatory arguments are as follows:
+```
+width            # specifies the width of the parbox, and
+text             # the text that goes inside the parbox.
+```
+If the height argument is not given, the box will have the natural height of the text.
+
+The inter-pos control the placement of the text inside the box
+```
+t --- text is placed at the top of the box.
+c --- text is centred in the box.
+b --- text is placed at the bottom of the box.
+s --- stretch vertically. The text must contain vertically stretchable space for this to work.
+```
+A \parbox command is used for a parbox containing a small piece of text, with nothing fancy inside. 
+In particular, you shouldn't use any of the paragraph-making environments inside a \parbox argument. 
+For larger pieces of text, including ones containing a paragraph-making environment, you should use a minipage environment See minipage.
+
+#### makebox(mbox) vs framebox(fbox) vs parbox vs minipage
+
+```
+makebox 
+framebox                             # based on makebox, put a extra frame outside.
+```
+```
+\parbox
+\minipage                            # all can be used to put one or more paragraphs of text 
+				       inside a picture on in a table item.
+				       allow verbatim (\verb, verbatim, etc.) 
+```
+#### rule
+Be used to produce horizontal lines
+```
+\rule[raise-height]{width}{thickness}
+```
+The arguments are defined as follows:
+```
+raise-height                  # specifies how high to raise the rule (optional)
+width                         # specifies the length of the rule (mandatory)
+thickness                     # specifies the thickness of the rule (mandatory)
+```
+#### savebox Vs newsavebox vs usebox
+```
+savebox
+newsavebox
+usebox
+```
+
+### Special characters
+```
+ # $ % & ~ _ ^ \ { }
+```
+
+### Split the input
+A large document requires a lot of input, rather than putting the whole input in a single large file. It's more effcient to split it into several smaller ones.
+```
+\include                         # Conditionally include a file.
+\includeonly                     # Determine which files are included.
+\input                           # Unconditionally include a file.
+```
+#### include
+be used for selective inclustion of files.
+```
+\include{file}
+```
+If  file exists or there is no includeonly command, it is equivalent to
+```
+\clearpage \input{file} \clearpage
+```
+if the file 'file.tex' does not exist, then a warning message rather than an error is produced. 
+If the file is not in the file list, the \include command is equivalent to 
+```
+\clearpage.
+```
+The \include command may not appear in the preamble or in a file read by another \include command.
+#### includeonly
+```
+\includeonly{file_list}
+```
+file_list should be a comma-separated list of filenames. 
+Each filename must match exactly a filename specified in a \include command. 
+This command can only appear in the preamble.
+#### input 
+```
+\input{file}
+```
+The \input command causes the indicated file to be read and processed, exactly as 
+if its contents had been inserted in the current file at that point. 
+#### import 
 
 
 
