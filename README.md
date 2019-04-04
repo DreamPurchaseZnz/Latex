@@ -13,19 +13,7 @@
 ```
 
 ----------------------------------------------------------------------------------------------------------------------------------
-## parbox and minipage
-A parbox is a box whose contents are created in paragraph mode
 
-```
-\parbox[position][height][inner-pos]{width}{text}              
-```
-For larger pieces of text, including ones containing a paragraph-making environment, you should use a minipage environment
-```
-\begin{minipage}[position]{width}        
-  text
- \end{minipage}
-```
-Footnotes in a minipage environment are handled in a way that is particularly useful for putting footnotes in figures or tables.
 
 ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -1235,12 +1223,27 @@ For larger pieces of text, including ones containing a paragraph-making environm
 makebox 
 framebox                             # based on makebox, put a extra frame outside.
 ```
+
 ```
 \parbox
 \minipage                            # all can be used to put one or more paragraphs of text 
 				       inside a picture on in a table item.
 				       allow verbatim (\verb, verbatim, etc.) 
 ```
+
+A parbox is a box whose contents are created in paragraph mode
+
+```
+\parbox[position][height][inner-pos]{width}{text}              
+```
+For larger pieces of text, including ones containing a paragraph-making environment, you should use a minipage environment
+```
+\begin{minipage}[position]{width}        
+  text
+ \end{minipage}
+```
+Footnotes in a minipage environment are handled in a way that is particularly useful for putting footnotes in figures or tables.
+
 #### rule
 Be used to produce horizontal lines
 ```
@@ -1271,8 +1274,16 @@ A large document requires a lot of input, rather than putting the whole input in
 \includeonly                     # Determine which files are included.
 \input                           # Unconditionally include a file.
 ```
+
+####  Input vs include
+```
+input 
+include                     # \clearpage     \input       \clearpage
+includeonly                 # used in conjunction with \include.
+import                      # nested structure
+```
 #### include
-be used for selective inclustion of files.
+The \include command is used in conjunction with the \includeonly command for selective selection of files.
 ```
 \include{file}
 ```
@@ -1293,15 +1304,240 @@ The \include command may not appear in the preamble or in a file read by another
 file_list should be a comma-separated list of filenames. 
 Each filename must match exactly a filename specified in a \include command. 
 This command can only appear in the preamble.
+```
+\documentclass{report}
+\usepackage{blindtext}
+ 
+\begin{filecontents}{subfolder/chapter_1}\chapter{First}\blindtext\end{filecontents}
+ 
+\begin{filecontents}{subfolder/chapter_2}\chapter{Second}\blindtext\end{filecontents}
+ 
+\includeonly{subfolder/chapter_1,subfolder/chapter_2}
+ 
+\begin{document}
+\tableofcontents
+\include{subfolder/chapter_1}
+\include{subfolder/chapter_2}
+\include{subfolder/chapter_3}
+\include{subfolder/chapter_4}
+\end{document}
+```
+
 #### input 
 ```
 \input{file}
 ```
 The \input command causes the indicated file to be read and processed, exactly as 
-if its contents had been inserted in the current file at that point. 
+if its contents had been inserted in the current file at that point.
+
+
+
+
 #### import 
+if nested importing is need, the standard tools such as include and includeonly command are prone to errors.
+
+For this reason, the recommended option is the package import
+```
+\usepackage{import}                               # write this line in the preamble of your document.
+```
+```
+\chapter{First chapter}
+\import{sections/}{section1-1.tex}
+\import{sections/}{section1-2.tex}
+```
+The section1-1.tex can be as follows
+```
+\section{First section}
+ 
+Below is a simple 3d plot
+ 
+\begin{figure}[h]
+\centering
+\subimport{img/}{plot1.tex}
+\caption{Caption}
+\label{fig:my_label}
+\end{figure}
+ 
+[...]
+```
+
+### Table of content
+
+A table of contents is produced with the 
+```
+\tableofcontents  
+```
+You put the command right where you want the table of contents to go; LaTeX does the rest for you. 
+
+It produces a heading, but it does not automatically start a new page. If you want a new page after the table of contents, include a \newpage command after the \tableofcontents command.
 
 
+There are similar commands 
+```
+\listoffigures
+\listoftables 
+```
+for producing a list of figures and a list of tables, respectively. Everything works exactly the same as for 
+the table of contents.
+```
+\addcontentsline                # Add an entry to table of contents etc.
+\addtocontents                  # Add text directly to table of contents file etc.
+```
+#### add content line
+adds an entry to specified list or table
+```
+\addcontentsline{file}{sec_unit}{entry}
+```
+where file is the extension of the line on which information to be writen
+```
+toc (table of contents), 
+lof (list of figures),
+lot (list of tables).
+```
+sec_unit controls the formatting of the entry.
+```
+toc --- the name of the sectional unit, such as part or subsection.
+lof --- figure
+lot --- table
+```
+entry is the text of entry.
+```
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+ 
+\title{Sections and Chapters}
+\author{Gubert Farnsworth}
+\date{ }
+ 
+\begin{document}
+ 
+\maketitle
+ 
+\tableofcontents
+ 
+\section{Introduction}
+ 
+This is the first section.
+ 
+Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
+elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
+neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
+Donec ullamcorper, felis non sodales...
+ 
+\addcontentsline{toc}{section}{Unnumbered Section}
+\section*{Unnumbered Section}
+ 
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  
+Etiam lobortis facilisissem.  Nullam nec mi et neque pharetra 
+sollicitudin.  Praesent imperdiet mi necante...
+ 
+\section{Second Section}
+ 
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  
+Etiam lobortis facilisissem.  Nullam nec mi et neque pharetra 
+sollicitudin.  Praesent imperdiet mi necante...
+ 
+\end{document}
+```
+### Terminal Input/output
+```
+\typein[cmd]{msg}                       # Read text from the terminal.
+\typeout{msg}                           # Write text to the terminal.
+```
+### Typefaces
+A typeface is also called font
+```
+Styles                      # Select roman, italics etc.
+Sizes                       # Select point size.
+Low-level font commands     # Commands for wizards.
+```
+#### style
+The following type style commands are supported by latex
+```
+ \textit{italics text}
+```
+The corresponding command in parenthesis is the declaration form, which takes no arguments. The scope of declaration form lasts
+until the next type style command or the end of the current group
+
+The declaration forms are cumulative,i.e., you can say \sffamily\bfseries to get sans serif boldface
+
+You can use the environment form of the declaration forms, e.g. \begin{ttfamily}...\end{ttfamily}
+```
+\textrm (\rmfamily)	Roman.
+\textit (\itshape)	
+\emph	                # Emphasis (toggles between \textit and \textrm).
+\textmd (\mdseries)	# Medium weight (default). The opposite of boldface.
+\textbf (\bfseries)	# Boldface.
+\textup (\upshape)	# Upright (default). The opposite of slanted.
+\textsl (\slshape)	# Slanted.
+\textsf (\sffamily)	# Sans serif.
+\textsc (\scshape)	# Small caps.
+\texttt (\ttfamily)	# Typewriter.
+
+\textnormal (\normalfont)	# Main document font.
+\mathrm	                        # Roman, for use in math mode.
+\mathbf	                        # Boldface, for use in math mode.
+\mathsf	                        # Sans serif, for use in math mode.
+\mathtt	                        # Typewriter, for use in math mode.
+\mathit	                        # Italics, for use in math mode, e.g. 
+				  variable names with several letters.
+\mathnormal	                # For use in math mode, e.g. inside another type style declaration.
+\mathcal	                # Calligraphic letters, for use in math mode.
+```
+#### sizes
+```
+\tiny	
+\scriptsize	
+\footnotesize	
+\small	
+\normalsize	
+(default)
+
+\large	
+\Large	
+\LARGE	
+\huge	
+\Huge
+```
+#### low-level font commands
+```
+\fontencoding{enc}	        # Select font encoding. Valid encodings include OT1 and T1.
+
+\fontfamily{family}	        # Select font family. Valid families include:
+					cmr for Computer Modern Roman
+					cmss for Computer Modern Sans Serif
+					cmtt for Computer Modern Typewriter
+					and numerous others.
+
+\fontseries{series}		# Select font series. Valid series include:
+					m Medium (normal)
+					b Bold
+					c Condensed
+					bc Bold condensed
+					bx Bold extended
+					and various other combinations.
+
+\fontshape{shape}		# Select font shape. Valid shapes are:
+					n Upright (normal)
+					it Italic
+					sl Slanted (oblique)
+					sc Small caps
+					ui Upright italics
+					ol Outline
+					The two last shapes are not available for most font families.
+
+\fontsize{size}{skip}	  	# Set font size. The first parameter is the font size to switch to; 
+				  the second is the \baselineskip to use. 
+				  The unit of both parameters defaults to pt.
+				  A rule of thumb is that the baselineskip should be 1.2 times the font size.
+
+\selectfont	                # The changes made by calling the four font commands described above 
+				  do not come into effect until \selectfont is called.
+
+\usefont{enc}{family}{series}{shape}     # Equivalent to calling \fontencoding, \fontfamily, 
+					   \fontseries and \fontshape with the given parameters, 
+					   followed by \selectfont.
+```
 
 ## Paremeters
 
