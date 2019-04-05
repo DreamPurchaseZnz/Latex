@@ -13,7 +13,49 @@
 ```
 
 ----------------------------------------------------------------------------------------------------------------------------------
+## \def and \newcommand
+```
+\def <command> <parameter-text>{<replacement-text>}
+```
+For example:
+```
+\def \foo [#1]#2{The first argument is ``#1'', the second one is ``#2''}
+```
+The first argument must be delimited by two square brackets while the second may be a single character
+(strictly speaking, a single token having a category code distinct from 1 or 2) or any balanced text surrounded by braces {...}
 
+```
+\def \foo [#1]#2%                          # % definition takes up multiple lines
+  {The first argument is ``#1''.
+
+  The second one is ``#2''}
+```
+Compared with \newcommand, TeX with \def doesn't check whether the command to be defined is important or not.
+```
+\def \NAS {National Academy of Science}
+\def \author {William {\sc Smith}}
+```
+```
+\documentclass{article}
+\begin{document}
+% one arg def:
+\def\testonearg[#1]{\typeout{Testing one arg: '#1'}}
+%call:
+\testonearg[test this]
+% two arg def:
+\def\testtwoarg[#1]#2{\typeout{Testing two args: '#1' and '#2'}}
+%call:
+\testtwoarg[test this first]{this is, the second test.}
+% two arg def (B):
+\def\testtwoargB#1#2{\typeout{Testing two args B: '#1' and '#2'}}
+%call:
+\testtwoargB{test this first}{this is, the second test.}
+
+% output:
+%*Testing one arg: 'test this'
+%*Testing two args: 'test this first' and 'this is, the second test.'
+%*Testing two args B: 'test this first' and 'this is, the second test.'
+```
 
 ----------------------------------------------------------------------------------------------------------------------------------
 
