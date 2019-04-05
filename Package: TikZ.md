@@ -29,8 +29,12 @@ for example:
 \pgfdeclarelayer{background} 
 \pgfdeclarelayer{foreground} 
 \pgfsetlayers{background,main,foreground}
-
 ```
+I just found certain spaces are not allowed in the command *\pgfsetlayers*.
+For example, \pgfsetlayers{background layer,main,foreground layer} is
+allowed, while \pgfsetlayers{background layer, main, foreground layer} is
+not (NOTE THAT THERE IS A SPACE AFTER EVERY COMMA).
+
 ### using the layers
 You can use the pgfonlayer environment to tell the PGF that certain command should instead be added to the given layer.
 ```
