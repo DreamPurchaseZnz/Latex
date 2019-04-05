@@ -185,6 +185,9 @@ Load the tikz libraries of your own choice
 \usetikzlibrary{list of libraries}
 ```
 Examples for libraries are
+If there are some mistakes, that is, I donot know the key "blabla", this is possibly because the library about the key
+is not invoked.
+
 ```
  "arrows",              # for example use the arrow head type, >=stealth                     
  "Positioning"          # for example the syntax: right=4pt of node name, compared with 
@@ -197,7 +200,7 @@ Examples for libraries are
  "mindmap", 
  "patterns", 
  "petri", 
- "shadows", 
+ "shadows",             # for example, drop shadows 
  "shapes.geometric", 
  "shapes.misc",
  "spy", "trees".                                   
