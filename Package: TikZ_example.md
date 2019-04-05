@@ -1,4 +1,10 @@
 # Some common usages
+There are some beautiful examples, but I can only list weblinks and codes here for convenience 
+because the github is not easy to present diagrams.
+
+
+
+
 
 ## Manually listing objects
 ```
