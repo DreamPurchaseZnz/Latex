@@ -281,6 +281,7 @@ out/.style={thick, circle},}
 The system will throw you a error, the key requires a value. It means the out is a key of the current instruction.
 
 ## Coordinates
+Refer to a particular point:
 ```
 Cartesian:(x,y)
 Polar:(length, angle)
@@ -289,6 +290,12 @@ Polar:(length, angle)
 (node1-|node2)               # return the coordinates of the corner that connect
 			       the node1 and node2
 (node)                       # return the coordinates of anchor the node
+```
+Relative corrdinate
+```
+\node [right of=node, node distance=3cm] {}
+\node [right=2cm of node]{}
+(node)+(x,y)                        # Donnot send the new reference location as the current point
 ```
 ### relative coordinates
 Coordinates relative to the precious position can be specified 
