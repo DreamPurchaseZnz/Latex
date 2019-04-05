@@ -286,7 +286,9 @@ Cartesian:(x,y)
 Polar:(length, angle)
 ```
 ```
-(node1-|node2)               # return the coordinates of the corner.
+(node1-|node2)               # return the coordinates of the corner that connect
+			       the node1 and node2
+(node)                       # return the coordinates of anchor the node
 ```
 ### relative coordinates
 Coordinates relative to the precious position can be specified 
