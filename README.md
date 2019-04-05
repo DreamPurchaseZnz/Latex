@@ -13,7 +13,7 @@
 ```
 
 ----------------------------------------------------------------------------------------------------------------------------------
-## \def and \newcommand
+## command defination: \def and \newcommand
 ```
 \def <command> <parameter-text>{<replacement-text>}
 ```
