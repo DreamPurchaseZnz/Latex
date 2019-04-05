@@ -1,15 +1,45 @@
 # TikZ
 
+[Tikz help](https://stuff.mit.edu/afs/athena/contrib/tex-contrib/beamer/pgf-1.01/doc/generic/pgf/version-for-tex4ht/en/pgfmanual.html#pgfmanualse30.html)
+
 [A very minimal introduction to TikZ-NP:26](https://cremeronline.com/LaTeX/minimaltikz.pdf)
 
 [tikzpgfmanual-NP:405](https://www.bu.edu/math/files/2013/08/tikzpgfmanual.pdf)
 
 [excellent tutorial](http://www.flutterbys.com.au/stats/tut/tut17.1a.html)
 
+-----------------------------------------------------------------------------------------------------------------------
+## Layered Graphics
+```
+\usepackage{pgfbaselayers} % LATEX
+```
+This package provides a commands and environment for composing a picture from multiple layers
 
+Fisrtly, declare a new layer except the main layer by default.
+```
+\pgfdeclarelayer{<name>}
+```
+Then tell the PGF which layers will be part of the actual picture and which will be their ordering. It is possible to
+have more layers declared than are actually used.
+```
+\pgfsetlayers{<layer list>}
+```
+for example:
+```
+\pgfdeclarelayer{background} 
+\pgfdeclarelayer{foreground} 
+\pgfsetlayers{background,main,foreground}
 
+```
+### using the layers
+You can use the pgfonlayer environment to tell the PGF that certain command should instead be added to the given layer.
+```
+\begin{pgfonlayer}{<layer name>}
+  <environment contents>
+\end{pgfonlayer}
+```
 
-
+You can not add anything to the main layer using this environment
 
 
 -------------------------------------------------------------------------------------------------------------------------
