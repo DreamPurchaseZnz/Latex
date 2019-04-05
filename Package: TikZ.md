@@ -9,6 +9,79 @@
 [excellent tutorial](http://www.flutterbys.com.au/stats/tut/tut17.1a.html)
 
 -----------------------------------------------------------------------------------------------------------------------
+## Repeating things: the foreach statement
+```
+\foreach <variables> in {<list>} <commands>
+```
+```
+<variables>                              # a single TEX-command like \x or \point. 
+<list>                                   #  a comma-separated list of values. 
+					    Anything can be used as a value, but numbers are most likely.
+<commands>                               # some TEX-text in curly braces.
+```
+with all these assumptions, the foreach statement will execute the commands repeatedly, once for every element of the <list>
+
+for example
+```
+foreach \x in {1,2,3,0} {[\x]}
+```
+If the foreach statement doesnot encounter an opening brace, it will instead scan everything up to the next semicolon and use this as
+<command>
+```
+\tikz \foreach \x in {0,1,2,3} 
+    \draw (\x,0) circle (0.2cm);           # reading until the next semicolon
+
+```
+There is another rule: if a foreach statement is directly followed by another \foreach statement, this second foreach statement is
+collected as command
+```
+\begin{tikzpicture} 
+  \foreach \x in {0,1,2,3} 
+    \foreach \y in {0,1,2,3} 
+      { 
+        \draw (\x,\y) circle (0.2cm); 
+        \fill (\x,\y) circle (0.1cm); 
+      } 
+\end{tikzpicture}
+```
+The dots notation: if this list contains the list item "...", this list item is replace by "missing value"
+```
+foreach \x in {1,2,...,6} {\x, } yields 1, 2, 3, 4, 5, 6,
+\foreach \x in {1,2,3,...,6} {\x, } yields 1, 2, 3, 4, 5, 6,
+\foreach \x in {1,3,...,11} {\x, } yields 1, 3, 5, 7, 9, 11,
+\foreach \x in {1,3,...,10} {\x, } yields 1, 3, 5, 7, 9,
+```
+Special handling of pairs
+```
+\tikz 
+  \foreach \position in {(0,0), (1,1), (2,0), (3,1)} 
+    \draw \position rectangle +(.25,.5);
+```
+Using the foreach-statement inside paths
+```
+\tikz 
+  \draw (0,0) 
+    \foreach \x in {1,...,3} 
+      { -- (\x,1) -- (\x,0) }
+```
+Multiple variables. you will often wish to iterate over two varaibles at the same time instead of nesting the foreach loops
+
+it can also be a list of variables separated by slashes (/). 
+In this case the list items can also be lists of values separated by slashes
+
+```
+\foreach \x / \y in {1/2,a/b} {``\x\ and \y''} 
+yields “1 and 2”“a and b”.
+```
+```
+\begin{tikzpicture} 
+  \foreach \x/\xtext in {0,...,3,2.72 / e} 
+    \draw (\x,0) node{$\xtext$}; 
+\end{tikzpicture}
+```
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Layered Graphics
 ```
 \usepackage{pgfbaselayers} % LATEX
