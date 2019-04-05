@@ -273,6 +273,9 @@ The system will throw you a error, the key requires a value. It means the out is
 Cartesian:(x,y)
 Polar:(length, angle)
 ```
+```
+(node1-|node2)               # return the coordinates of the corner.
+```
 ### relative coordinates
 Coordinates relative to the precious position can be specified 
 by appending either "++"(incremental) or "+"(non-incremental) before brackets
