@@ -381,6 +381,15 @@ cloud callout
 rectangle callout
 rounded rectangle
 ```
+[Predifined anchors](https://stuff.mit.edu/afs/athena/contrib/tex-contrib/beamer/pgf-1.01/doc/generic/pgf/version-for-tex4ht/en/pgfmanualse25.html)
+
+```
+s.north, s.west, s.east, s.north east, and so,on
+s.30, s.100                                           # boarder anchor.
+s.center, base, mid
+```
+
+
 #### seperation 
 ```
 inner sep=<>
