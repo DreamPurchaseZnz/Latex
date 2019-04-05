@@ -260,6 +260,15 @@ In my opinions, the options is equal to .style. And the style file is similar to
 ```
 \tikzstyle
 ```
+```
+\tikzstyle{sensor}=[draw, fill=blue!20, text width=5em, 
+    text centered, minimum height=2.5em,drop shadow]
+\tikzstyle{ann} = [above, text width=5em, text centered]
+\tikzstyle{wa} = [sensor, text width=10em, fill=red!20, 
+    minimum height=6em, rounded corners, drop shadow]
+\tikzstyle{sc} = [sensor, text width=13em, fill=red!20, 
+    minimum height=10em, rounded corners, drop shadow]
+```
 
 Notice that we must take care to name a new instruction. Or it will conflict with the current instruction exist in the environment.
 ``` 
