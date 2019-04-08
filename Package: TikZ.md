@@ -9,6 +9,27 @@
 [excellent tutorial](http://www.flutterbys.com.au/stats/tut/tut17.1a.html)
 
 -----------------------------------------------------------------------------------------------------------------------
+## xyz coordinate
+```
+\documentclass{standalone}
+\usepackage{tikz}
+
+\pgfsetxvec{\pgfpoint{.866cm}{.5cm}}
+\pgfsetyvec{\pgfpoint{.866cm}{-.5cm}}
+\pgfsetzvec{\pgfpoint{0cm}{-1cm}}
+
+\begin{document}
+
+\begin{tikzpicture}
+\draw [->] (0,0,0) -- (5,0,0) node[midway,sloped,above,xslant=-0.5] {well-formedness};
+\draw [->] (0,0,0) -- (0,5,0) node[midway,sloped,above,xslant=0.5] {weaker control flow};
+\draw [<-] (0,0,5) -- (0,0,0) node[midway,sloped,above] {number of exits};
+\path (2,1,0) node[rectangle,draw=black,rotate=30,xslant=-0.5] {test};
+\end{tikzpicture}
+
+\end{document}
+```
+
 ## scope method
 ```
 \begin{scope}[options]             # all the options are local to env
@@ -421,6 +442,15 @@ rotate around ={<degree>:<coordinates>}     # rotates the coordinate system by
 					      degree around the point coordinate
 cm={a, b, c, d, coordinate}                 # coordinate=(tx, ty), transform:
 					      [[a, b][c,d]]([x], [y]) + [[tx][ty]]
+```
+The xslant is equivalent to:
+```
+\begin{tikzpicture}[myxslant/.style={cm={1,0,#1,1,(0,0)}}]
+    \draw[help lines] (0,0) grid (3,2);
+    \draw                (0,0) -- (1,1) -- (1,0);
+    \draw[myxslant=2,blue] (0,0) -- (1,1) -- (1,0);
+    \draw[myxslant=-1,red] (0,0) -- (1,1) -- (1,0);
+\end{tikzpicture}
 ```
 
 ### relative coordinates
