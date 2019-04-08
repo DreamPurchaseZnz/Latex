@@ -270,6 +270,7 @@ is not invoked.
  "Positioning"          # for example the syntax: right=4pt of node name, compared with 
                                                   right of = node name
  "automata",
+ "calc"                 # ($(refer point) + (\x, \y)$)
  "backgrounds", 
  "calendar", 
  "chains", 
