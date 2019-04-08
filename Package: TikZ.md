@@ -383,7 +383,7 @@ out/.style={thick, circle},}
 The system will throw you a error, the key requires a value. It means the out is a key of the current instruction.
 
 ## Coordinates
-Refer to a particular point:
+### Refer to a particular point
 ```
 Cartesian:(x,y)
 Polar:(length, angle)
@@ -399,6 +399,30 @@ Relative corrdinate
 \node [right=2cm of node]{}
 (node)+(x,y)                        # Donnot send the new reference location as the current point
 ```
+### Coordinate Transformations
+The coordinate is first “reduced” to a position of the form “x points to
+the right and y points upwards.”
+
+coordinate transformation matrix
+
+```
+shift={coordinate}                          # adds the coordinate to all coordinates.
+shift only
+xshift={dimension}                          # adds dimension to the x value of all coordinates
+yshift
+scale                                       #  multiplies all coordinates by the given factor
+xscale
+yscale
+xslant                                      # slants the coordinate horizontally by the given factor
+                                              (x,y) xslant=k replace x by x+k*y.
+yslant
+rotate
+rotate around ={<degree>:<coordinates>}     # rotates the coordinate system by 
+					      degree around the point coordinate
+cm={a, b, c, d, coordinate}                 # coordinate=(tx, ty), transform:
+					      [[a, b][c,d]]([x], [y]) + [[tx][ty]]
+```
+
 ### relative coordinates
 Coordinates relative to the precious position can be specified 
 by appending either "++"(incremental) or "+"(non-incremental) before brackets
