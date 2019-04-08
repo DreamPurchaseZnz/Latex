@@ -9,6 +9,27 @@
 [excellent tutorial](http://www.flutterbys.com.au/stats/tut/tut17.1a.html)
 
 -----------------------------------------------------------------------------------------------------------------------
+## scope method
+```
+\begin{scope}[options]             # all the options are local to env
+[environment contents]
+\end{scope}
+```
+```
+\begin{tikzpicture}
+\begin{scope}[red]
+\draw (0mm,0mm) -- (10mm,0mm);
+\draw (0mm,1mm) -- (10mm,1mm);
+\end{scope}
+\draw (0mm,2mm) -- (10mm,2mm);
+\begin{scope}[green]
+\draw (0mm,3mm) -- (10mm,3mm);
+\draw (0mm,4mm) -- (10mm,4mm);
+\draw[blue] (0mm,5mm) -- (10mm,5mm);
+\end{scope}
+\end{tikzpicture}
+```
+
 ## Repeating things: the foreach statement
 ```
 \foreach <variables> in {<list>} <commands>
@@ -325,7 +346,7 @@ In my opinions, the options is equal to .style. And the style file is similar to
 	text centered]
 \end{tikzpicture}
 ```
-- Secondly use the \tikzset
+- Secondly use the \tikzset use the curly brackets.
 ```
 \tikzset{
 	state/.style={
@@ -337,9 +358,12 @@ In my opinions, the options is equal to .style. And the style file is similar to
 	text centered
 }}
 ```
-- Thirdly use the \tikzstyle
+- Thirdly use the \tikzstyle use the square brackets \[\]
 ```
 \tikzstyle
+```
+```
+\tikzstylehstyle namei+=[hoptionsi]
 ```
 ```
 \tikzstyle{sensor}=[draw, fill=blue!20, text width=5em, 
