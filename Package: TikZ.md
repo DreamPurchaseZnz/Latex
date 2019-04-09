@@ -722,7 +722,7 @@ as their target coordinates are not.
 		     		 node[below,sloped] {bad} (a);
 \end{tikzpicture}
 ```
-
+Note that edge is a bit of a strange beast, and you need to use to here instead
 
 
 
