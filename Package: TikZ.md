@@ -9,6 +9,47 @@
 [excellent tutorial](http://www.flutterbys.com.au/stats/tut/tut17.1a.html)
 
 -----------------------------------------------------------------------------------------------------------------------
+## Referencing Nodes Outside the Current Pictures
+To reference nodes in different pictures, proceed as follows
+Options
+```
+ remember picture=true or false             # This option tells TikZ that it should attempt to remember the
+					      position of the current picture on the page
+
+overlay                                     # 
+```
+```
+\tikzsytle{every picture}+=[remember picture]
+```
+```
+\tikz[remember picture] \node[circle,fill=red!50] (n1) {};
+```
+
+```
+\documentclass{article}
+%\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{array}
+\newcommand\mybox[2]{\tikz[remember picture]{\node (#2) [draw=black, inner sep=4pt, anchor=text, rounded corners=1mm] {#1};}}
+\setlength{\tabcolsep}{0.5in}
+\setlength{\extrarowheight}{0.3in}
+\begin{document}
+	\begin{tabular}{rl}
+		\mybox{Molecular}{molecular} & \mybox{Diamond}{diamond} \\
+		\mybox{Amorphous}{amorph} & \mybox{Sodium}{na} \\
+		\mybox{Metallic}{metal} & \mybox{Carbon Dioxide}{carbondiox} \\
+		\mybox{Covalent Network}{covnet} & \mybox{Glass}{glass}
+	\end{tabular}
+	\begin{tikzpicture}[remember picture,overlay]
+	\draw (molecular.east) -- (carbondiox.west);
+	\draw (amorph.east) -- (glass.west);
+	\draw (metal.east) -- (na.west);
+	\draw (covnet.east) -- (diamond.west);
+	\end{tikzpicture}
+\end{document} 
+```
+
+
 ## xyz coordinate
 ```
 \documentclass{standalone}
