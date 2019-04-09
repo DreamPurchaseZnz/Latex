@@ -375,8 +375,16 @@ instructions
 ```
 or 
 ```
-\tikz [option] {tikz commands}
+\tikz [option] {tikz commands}                                   # litte command
 ```
+### \tikzpicture vs tikz
+```
+\tikz \draw (-1.5,0) -- (1.5,0) -- (0,-1.5) -- (0,1.5);          # Collects everything up to the next semicolon
+                                                                   and puts it inside a {tikzpicture} environment
+\tikz{\draw (0,0) -- (1.5,0)}                                    # Takes one argument                             
+```
+
+### options
 There are approximately 750 options that can be applied to graphical elements 
 
 Some of the commen options that are applied at the environment level so that they can affect all elements therein 
