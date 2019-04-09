@@ -126,6 +126,20 @@ For example:
 ```
 \def \foo [#1]#2{The first argument is ``#1'', the second one is ``#2''}
 ```
+```
+\newcommand{\wbalsup}[1] {
+  This is the Wikibook about LaTeX 
+  supported by #1}
+\newcommand{\wbalTwo}[2] {
+  This is the Wikibook about LaTeX
+  supported by #1 and #2}
+% in the document body:
+\begin{itemize}
+\item \wbalsup{Wikimedia}
+\item \wbalsup{lots of users!}
+\item \wbalTwo{John Doe}{Anthea Smith}
+\end{itemize}
+```
 The first argument must be delimited by two square brackets while the second may be a single character
 (strictly speaking, a single token having a category code distinct from 1 or 2) or any balanced text surrounded by braces {...}
 
