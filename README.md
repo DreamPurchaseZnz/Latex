@@ -1,5 +1,110 @@
 # Latex
 
+## Multi-column and multi-row cells in Latex tables
+### Basic command
+```
+%multi-column
+\multicolumn{number cols}{align}{text} % align: l,c,r
+ 
+%multi-row
+\usepackage{multirow}
+\multirow{number rows}{width}{text}       # Using * as width, 
+                                            the text argument’s natural width is used 
+```
+```
+\begin{tabular}{cc}
+    \hline
+    \multicolumn{2}{c}{Multi-column}\\
+    X&X\\
+    \hline
+\end{tabular}
+```
+```
+\begin{tabular}{cc}
+    \hline
+    \multirow{2}{*}{Multirow}&X\\
+    &X\\
+    \hline
+\end{tabular}
+```
+### Multiple rows and columns
+```
+\begin{tabular}{ccc}
+    \hline
+    \multicolumn{2}{c}{\multirow{2}{*}{Multi-col-row}}&X\\
+    \multicolumn{2}{c}{}&X\\
+    \hline
+    X&X&X\\
+    \hline
+\end{tabular}
+```
+### Partial horizontal line
+```
+\begin{tabular}{ccc}
+    \hline
+    \multicolumn{2}{c}{Multi-column}&\\
+    \cline{1-2}
+    X&X&X\\
+    X&X&X\\
+    \hline
+\end{tabular}
+```
+### Space 
+Space between the caption and table
+```
+\usepackage{caption} 
+\captionsetup[table]{skip=10pt}
+```
+Space between columns
+To tweak the space between columns (LaTeX will by default choose very tight columns), one can alter the column separation: 
+```
+\setlength{\tabcolsep}{5pt}
+```
+The default value is 6pt.
+
+Space between rows
+```
+\renewcommand{\arraystretch}{1.5}
+```
+```
+\begin{tabular}{ll}
+\hline
+Mineral & Color \\[1cm]
+Ruby & red \\
+Sapphire & blue \\
+\hline
+\end{tabular}
+```
+```
+\begin{tabular}{ | l | l | r | }
+  \hline\noalign{\smallskip}
+  \multicolumn{2}{c}{Item} \\
+  \cline{1-2}\noalign{\smallskip}
+  Animal & Description & Price (\$) \\
+  \noalign{\smallskip}\hline\noalign{\smallskip}
+  Gnat  & per gram & 13.65 \\
+        & each     &  0.01 \\
+  Gnu   & stuffed  & 92.50 \\
+  Emu   & stuffed  & 33.33 \\
+  Armadillo & frozen & 8.99 \\
+  \noalign{\smallskip}\hline
+\end{tabular}
+```
+
+### Manually broken paragraphs in table cells
+```
+\begin{tabular}{cc}
+  boring cell content & \parbox[t]{5cm}{rather long par\\new par}
+\end{tabular}
+```
+where  the t argument controls the placement of the text inside the box
+### Alternate row colors in tables
+The xcolor package provides the necessary commands to produce tables with alternate row colors, when loaded with the table option. The command 
+```
+\rowcolors{<''starting row''>}{<''odd color''>}{<''even color''>} 
+```
+has to be specified right before the tabular environment starts.
+
 
 ## spacing between the items 
 
@@ -718,6 +823,7 @@ These commands can be used inside a tabular environment
   \hline
 \end{tabular}
 ```
+
 #### thebibliography
 The environment produces a bibliography or reference list. In the article class, this reference list is labelled "References"; in the report class, it is labelled "Bibliography"
 ```
