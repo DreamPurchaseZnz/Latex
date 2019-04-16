@@ -33,8 +33,9 @@
 			&Conv2D(stride=[2,1])   & (3, 1, f, f)     & (n, f, 74, 1) \\
 			\hline
 			\multirow{2}{2cm}{\parbox{2cm}{Transition to ouput}} 
-			& Conv2D(stride=1)       & (1, 1, f, f)     & (n, f, 75,1)\\
-			&Tanh                   &                   & (n, f, 75,1)\\ 
+			& Conv2D(stride=1)       & (1, 1, f, f)     & (n, f, 74,1)\\
+			&Tanh                   &                   & (n, f, 74,1)\\ 
+			&FC                   &                   & (n, f, 75,1)\\
 			\hline
 		\end{tabular}
 	\end{center}
