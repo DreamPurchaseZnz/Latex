@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{tikz}
+
+\captionsetup[table]{skip=4pt}
+\renewcommand{\arraystretch}{1.1}
+\newcommand{\boxnode}[2]{
+	\tikz[remember picture]{\node[inner sep=0](#1){#2};}}
+
+\begin{document}
+\begin{table}[h!]
+	\begin{center}
+		\caption{U-Net structure B for acoustic model}
+		\label{tab:ustructureB}
+		\begin{tabular}{c|l|l|l}
+			\hline 
+			& \textbf{Operation} & \textbf{Kernel size} & \textbf{Output shape} \\
+			\hline
+			&Input $x$          &                      & (n, 1, 608, 297) \\
+			&Conv2D(stride=1)   & (5, 5, 1, d)         & (n, 2d, 608, 148) \\
+			&ReLU                  &                  & \boxnode{n11}{(n, 2d, 608, 148)} \\
+			\hline
+			\multirow{6}{2cm}{U-Net} 
+			& Downblock (stride=2)   & (5, 5, 2d, 4d)    & \boxnode{n12}{(n, 4d, 304, 148)} \\
+			&Downblock (stride=2)   & (5, 5, 4d, 8d)    & \boxnode{n13}{(n, 8d, 152, 74)} \\
+			&Downblock (stride=2)   & (5, 5, 8d, 16d)    & \boxnode{n14}{(n, 16d, 76, 37)} \\
+			&Upblock(stride=2)      & (5, 5, 16d, 8d)    & \boxnode{n15}{(n, 8d, 152, 74)} \\
+			&Upblock(stride=2)      & (5, 5, 8d, 4d)    & \boxnode{n16}{(n, 4d, 304, 148)} \\
+			&Upblock(stride=2)      & (5, 5, 4d, 2d)    & \boxnode{n17}{(n, 2d, 608, 297)} \\
+			\hline
+			\multirow{4}{2cm}{Adaptive network}
+			&Conv2D(stride=[1,2])   & (5, 5, 2d, d)     & (n, d, 608, 148) \\
+			&ReLU                   &                  & (n, d, 608, 148) \\
+			&Conv2D(stride=[1,2])   & (5, 5, d, 1)     & (n, 1, 608, 74) \\
+			&ReLU                   &                  & (n, 1, 608, 74) \\
+			\hline
+			\multirow{2}{2cm}{\parbox{2cm}{Transition to ouput}} 
+			& Conv2D(stride=1)       & (5, 5, 2d, 1)     & (n, 1, 608, 75)\\
+			&Tanh                   &                   & (n, 1, 608, 75)\\ 
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{tikzpicture}[remember picture, overlay, ->, >=stealth]
+\path[draw, dashed,->] (n11.east) to[bend left=50] node[right]{\textbf{Merge}} (n17.east);
+\path[draw, dashed] (n12.east) to[bend left=40] (n16.east);
+\path[draw, dashed] (n13.east) to[bend left=30] (n15.east);
+\end{tikzpicture}
+\end{document}
