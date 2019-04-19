@@ -1436,14 +1436,63 @@ A large document requires a lot of input, rather than putting the whole input in
 \includeonly                     # Determine which files are included.
 \input                           # Unconditionally include a file.
 ```
+#### Include a document into another document
+Cut the content (the part between \begin{document}...\end{document} of B.tex into a new file B-content.tex.
+```
+\documentclass{...}
+% your preamble here
+\begin{document}
+\include{B-content}
+\end{document}
+```
+You can use the standalone, docmute or subfiles package to make LaTeX ignore the second preamble.
+
+Simply load the standalone package in the main file and \input or \include the document. This is a good way if the to-be-included documents just holds a picture which should also be compiled standalone. In this case having main files for every picture file would be annoying.
+```
+% A.tex
+\documentclass{article}
+\usepackage{standalone}
+% your preamble here
+\begin{document}
+% ...
+\input{B}% or \include
+% ...
+\end{document}
+```
+```
+% B.tex (for normal text)
+\documentclass{article}
+% your preamble here
+\begin{document}
+% your B content here
+\end{document}
+```
+or 
+```
+% B.tex
+\documentclass{standalone}
+% your preamble here
+\begin{document}
+% your diagram code here
+\end{document}
+```
 
 ####  Input vs include
 ```
-input 
-include                     # \clearpage     \input       \clearpage
-includeonly                 # used in conjunction with \include.
-import                      # nested structure
+input\input{⟨filename⟩}                       # all the commands from filename include the begin{document}
+include{⟨filename⟩}                    	      # \clearpage     \input       \clearpage
+includeonly{⟨filelist⟩                        # used in conjunction with \include.
+import{⟨path⟩}{⟨filename⟩}                     # nested structure
 ```
+\input{filename} imports the commands from filename.tex into the target file;
+it's equivalent to typing all the commands from filename.tex right into the current file where the \input line is.
+
+
+\include{filename} essentially does a \clearpage before and after \input{filename}, together with some magic to switch to another .aux file, and omits the inclusion at all if you have an \includeonly without the filename in the argument.
+This is primarily useful when you have a big project on a slow computer; changing one of the include targets won't force you to regenerate the outputs of all the rest.
+
+\input is a more lower level macro which simply inputs the content of the given file like it was copy&pasted there manually
+
 #### include
 The \include command is used in conjunction with the \includeonly command for selective selection of files.
 ```
