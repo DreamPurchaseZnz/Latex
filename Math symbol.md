@@ -1,30 +1,9 @@
 # Math symbol
 ## Matrix
 ```
-$$
-\begin{matrix} 
-a & b \\
-c & d 
-\end{matrix}
-\quad
-\begin{pmatrix} 
-a & b \\
-c & d 
-\end{pmatrix}
-\quad
-\begin{bmatrix} 
-a & b \\
-c & d 
-\end{bmatrix}
-\quad
-\begin{vmatrix} 
-a & b \\
-c & d 
-\end{vmatrix}
-\quad
-\begin{Vmatrix} 
-a & b \\
-c & d 
-\end{Vmatrix}
-$$
+\begin{matrix}
+\begin{pmatrix}             # paraphasis
+\begin{bmatrix}
+\begin{vmatrix}
+\begin{Vmatrix}
 ```
