@@ -1,5 +1,9 @@
 # Beamer
-## basic format
+## Beamer theme gallery
+[Beamer theme gallery](http://www.deic.uab.es/~iblanes/beamer_gallery/index.html)
+
+
+## Basic format
 ```
 \documentclass{beamer}
 \title{A first example}
