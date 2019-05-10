@@ -305,6 +305,184 @@ Overlay Specification can be used with these commands
 ```
 Note: Effect of each command will only appear on the second slide
 
+### Special commands with overlay specifications
+
+The following commands have special overlay specifications which affect
+the text within the brackets fg or behind the command
+
+Special commands with Overlay Speciffications I
+```
+\onslide<>{}                 # Text will only be shown on the specified slides. 
+                               On non-specified slides, text still occupies the space.
+\only<>{}                    # Text only appears on speciffied slides. 
+                               On non-specified slides text will occupy no space.
+\uncover<>{}                 # Text will only be shown on specified slides. 
+                               On non-specified slides, text still occupies the space and appears transparent
+			       if transparency effects are enabled.
+\visible<>{}                 # Text will be shown on specified slides. 
+                               On the other slides, text is not shown but occupies still the space.
+\invisible<>{}               # Opposite to \visible.
+```
+
+```
+\alt<n>{default text}{alternative text}
+```
+The default text is shown on the specified slides, otherwise the alternative text.
+```
+\temporal<>{before slide}{default text}{after slide}
+```
+This command takes three text arguments. The first text appears if the current slide is before the specified slides, the default text
+appears while currently on the specified slides, the last text appears
+after the specified slides have appeared.
+
+### Overlay Specifications - Environments
+Environments can also be equipped with overlay specifications
+```
+\begin{theorem}<1->
+There exists an infinite set.
+\end{theorem}
+\begin{proof}<3->
+This follows from the axiom of
+infinity.
+\end{proof}
+\begin{example}<2->
+The set of natural numbers is
+infinite.
+\end{example}
+```
+For each of the basic commands \only, \uncover, \invisible and
+\alt there exists \environment versions": onlyenv, altenv, visibleenv,
+uncoverenv & invisibleenv.
+
+### Transparency effects
+By default, covered items are not shown during a presentation
+Transparency Effects
+Transparency effects can be specified in a quite general way by using the
+command in the preamble: 
+```
+\setbeamercovered{options}
+```
+Options are:
+```
+invisible                 # default - covered text is completely transparent
+transparent               # covered text is typeset in a transparent way
+                            (opaqueness can be specified - check documentation)
+dynamic                   # covered text is transparent in dynamic way, i.e. the longer
+                            it will take till the text is uncovered, the stronger the transparency.
+highly dynamic            # same effect as dynamic, but the effect is stronger.
+: : :
+```
+## Including Graphics
+
+Standard LATEX figure environment can be used
+```
+\includegraphics[options]{filename}
+```
+Options are:
+```
+scale=<value>: scale the picture by <value>
+height=<len>: scale the picture so that the width is <len>
+width=<len>: scale the picture so that the width is <len>
+angle=<x>: rotate the picture by <x> degrees
+draft: Don't display image, print lename in a box of the same size.
+: : :
+```
+Beamer also supports the pgf package
+```
+\pgfdeclareimage[options]{image name}{filename}
+\pgfuseimage{image name}
+\pgfimage[options]{image name}
+```
+the commands \includegraphics, \pgfuseimage, and
+\pgfimage can be combined with overlay specification
+
+## Structuring a Presentation: Columns, Spaces & Alignments
+
+### columns
+To structure the frame you can use
+```
+LATEX minipage environments
+Beamer columns environments
+```
+```
+\begin{columns}
+\begin{column}[]{.5\textwidth}
+\begin{block}{Block 1} Contents of Block 1\end{block}
+\end{column}
+\begin{column}[]{.5\textwidth}
+\begin{block}{Block 2} Contents of Block 2\end{block}
+\end{column}
+\end{columns}
+```
+
+### Alignments & Spacings
+
+A frame can be assigned a left, center, or right alignment with the
+flushleft, center and flushright environments
+```
+\begin{center}
+The center-aligned text goes here.
+\end{center}
+```
+- A vertical or horizontal space can be indicated by using
+```
+\vspace{0.5cm} and \hspace{0.5cm}, respectively.
+```
+- Several units can be used, e.g, 
+```
+mm, cm, in, pt, : : : .
+```
+- Also negative values can be used to squeeze text or graphics
+together: 
+```
+\vspace{-0.5cm}
+```
+### Tips for Professional Tables
+Simple tables can be created in Beamer with the tabular environment:
+```
+\begin{tabular}[position]{table spec}
+...
+\end{tabular}
+```
+The following symbols are available to describe the table columns:
+```
+l               # left-justified column
+c               # centered column
+r               # right-justified column
+p{width}        # paragraph column with text vertically aligned at the top
+|               #vertical line
+||              # double vertical line
+```
+LATEX won't wrap the text in a column if it is too wide for the page. With p{width} you can dene the width of the column and the
+text will be wrap-around.
+
+## Other useful thinks:
+Adding notes to the pdf 
+```
+\documentclass[notes]{beamer}
+```
+Drawing figures using e.g.:
+- the LATEX picture environment
+- pstricks package: cannot use pdflatex with this
+
+Animations, Sounds & Multimedia ! \usepackage{multimedia}
+
+Adding a Bibliography & Appendix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## reference
 [beamer class](http://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf)
