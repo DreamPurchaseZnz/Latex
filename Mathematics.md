@@ -1,8 +1,8 @@
 # Mathematics
 
-## aligning equations with amsmath
+## Aligning equations with amsmath
 The amsmath package provides a handful of options for displaying equations. You can choose the layout that better suits your document, even if the equations are really long, or if you have to include several equations in the same line.
-### Writing a single equation
+### writing a single equation
 
 To display a single equation, as mentioned in the introduction, you have to use the equation* or equation environment, depending on whether you want the equation to be numbered or not. Additionally, you might add a label for future reference within the document.
 ```
@@ -12,7 +12,7 @@ e^{\pi i} + 1 = 0
  
 The beautiful equation \ref{eu_eqn} is known as the Euler equation
 ```
-### Displaying long equations
+### displaying long equations
 
 For equations longer than a line use the multline environment. Insert a double backslash to set a point for the equation to be broken. The first part will be aligned to the left and the second part will be displayed in the next line and aligned to the right.
 
@@ -23,7 +23,7 @@ p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\
 - 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
 \end{multline*}
 ```
-### Splitting and aligning an equation
+### splitting and aligning an equation
 Split is very similar to multline. Use the split environment to break an equation and to align it in columns, just as if the parts of the equation were in a table. This environment must be used inside an equation environment. For an example check the introduction of this document.
 ```
 \begin{align*} 
@@ -31,7 +31,7 @@ Split is very similar to multline. Use the split environment to break an equatio
 3x + 9y &=  -12
 \end{align*}
 ```
-### Grouping and centering equations
+### grouping and centering equations
 
 If you just need to display a set of consecutive equations, centered and with no alignment whatsoever, use the gather environment. The asterisk trick to set/unset the numbering of equations also works here.
 ```
