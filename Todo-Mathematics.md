@@ -1,7 +1,4 @@
 # Mathematics
-[wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
-
-[User’s Guide for the amsmath Package](http://texdoc.net/texmf-dist/doc/latex/amsmath/amsldoc.pdf)
 
 ## aligning equations with amsmath
 The amsmath package provides a handful of options for displaying equations. You can choose the layout that better suits your document, even if the equations are really long, or if you have to include several equations in the same line.
@@ -132,5 +129,8 @@ LaTeX provides the following four commands for use in math mode
                       This command can also be used in paragraph and LR modes.
 \vdots	            # Produces a vertical ellipsis.
 ```
+## Reference
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
 
+[User’s Guide for the amsmath Package](http://texdoc.net/texmf-dist/doc/latex/amsmath/amsldoc.pdf)
 
