@@ -4,7 +4,7 @@
 
 [Beamer and tikz](http://www.texample.net/tikz/examples/tag/beamer/)
 
-
+[A post about cleaner beamer](https://kbroman.org/blog/2013/10/07/better-looking-latexbeamer-slides/)
 ## Basic format
 ```
 \documentclass{beamer}
