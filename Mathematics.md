@@ -1,4 +1,39 @@
 # Mathematics
+## List of LaTeX symbols
+[List of LaTeX symbols](https://latex.wikia.org/wiki/List_of_LaTeX_symbols)
+
+LaTeX symbols have either names (denoted by backslash) or special characters. They are organized into seven classes based on their role in a mathematical expression. This is not a comprehensive list. Refer to the external references at the end of this article for more information
+
+#### Class 0 (Ord) symbols: Simple / ordinary ("noun")
+Latin letters and Arabic numerals
+
+#### Class 1 (Op) symbols: prefix operator (extensible)
+
+Named operators: sin, cos, etc.Edit
+If your favorite operator, say, "foo", isn't listed, then you won't be able to use \foo(x) in your LaTeX equation. But don't fret. You can get the same result with 
+```
+\operatorname{foo}(x)
+```
+If your made-up operator needs displayed limits, as in \lim or \max, then use 
+```
+\operatorname*{foo}
+```
+as in the example in the following table.
+
+```
+\operatorname{foo}_0^1
+```
+
+### Class 2 (Bin) symbols: binary operator ("conjunction")
+```
++ - x /
+```
+### Class 3 (Rel) symbols: relation / comparison ("verb")
+<, =, >, and variants
+
+### Class 4 (open; left) and class 5 (close; right) symbols (extensible)
+
+### Class 6 (Pun) symbols: postfix / punctuation
 
 ## Aligning equations with amsmath
 The amsmath package provides a handful of options for displaying equations. You can choose the layout that better suits your document, even if the equations are really long, or if you have to include several equations in the same line.
