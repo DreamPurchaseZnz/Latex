@@ -24,16 +24,16 @@ as in the example in the following table.
 \operatorname{foo}_0^1
 ```
 
-### Class 2 (Bin) symbols: binary operator ("conjunction")
+#### Class 2 (Bin) symbols: binary operator ("conjunction")
 ```
 + - x /
 ```
-### Class 3 (Rel) symbols: relation / comparison ("verb")
+#### Class 3 (Rel) symbols: relation / comparison ("verb")
 <, =, >, and variants
 
-### Class 4 (open; left) and class 5 (close; right) symbols (extensible)
+#### Class 4 (open; left) and class 5 (close; right) symbols (extensible)
 
-### Class 6 (Pun) symbols: postfix / punctuation
+#### Class 6 (Pun) symbols: postfix / punctuation
 
 ## Aligning equations with amsmath
 The amsmath package provides a handful of options for displaying equations. You can choose the layout that better suits your document, even if the equations are really long, or if you have to include several equations in the same line.
