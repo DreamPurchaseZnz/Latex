@@ -1,4 +1,19 @@
 # Mathematics
+## cases
+For the question as it was originally posed, we can still use cases very easily. We simply employ the technique of using \left. at the start and then we can put \right\} at the end:
+```
+\[
+  X(m, n) = \left.
+  \begin{cases}
+    x(n), & \text{for } 0 \leq n \leq 1 \\
+    x(n - 1), & \text{for } 0 \leq n \leq 1 \\
+    x(n - 1), & \text{for } 0 \leq n \leq 1
+  \end{cases}
+  \right\} = xy
+\]
+```
+
+
 ## List of LaTeX symbols
 [List of LaTeX symbols](https://latex.wikia.org/wiki/List_of_LaTeX_symbols)
 [LaTeX Math Symbols](http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html)
