@@ -1696,7 +1696,9 @@ You can use the environment form of the declaration forms, e.g. \begin{ttfamily}
 				  variable names with several letters.
 \mathnormal	                # For use in math mode, e.g. inside another type style declaration.
 \mathcal	                # Calligraphic letters, for use in math mode.
+\mathbb                         # blackboard
 ```
+[Picture](https://tex.stackexchange.com/questions/58098/what-are-all-the-font-styles-i-can-use-in-math-mode)
 #### sizes
 ```
 \tiny	
